@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Language of Machine Learning — Tim Sent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:             #f8f8f6;
+      --surface:        #ffffff;
+      --border:         #e4e4e0;
+      --border-subtle:  #ededea;
+      --text-primary:   #19191a;
+      --text-secondary: #60605a;
+      --text-muted:     #9a9a94;
+      --accent:         #1c5fdd;
+      --accent-light:   #edf2ff;
+      --accent-hover:   #1a54c7;
+      --pink:           #e8433d;
+      --sans:   'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono:   'JetBrains Mono', ui-monospace, monospace;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+    .hr { height: 1px; background: var(--border); }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(248, 248, 246, 0.88);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 760px; margin: 0 auto; padding: 0 28px; height: 58px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .nav-brand {
+      font-family: var(--mono); font-size: 13.5px; font-weight: 500;
+      color: var(--text-primary); text-decoration: none; letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+    .nav-brand em { color: var(--accent); font-style: normal; }
+    .nav-links { list-style: none; display: flex; gap: 22px; flex-wrap: wrap; }
+    .nav-links a {
+      font-size: 12.5px; font-weight: 500; color: var(--text-secondary);
+      text-decoration: none; transition: color 0.15s; white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+
+    /* ── Hero ── */
+    .hero { padding: 72px 0 52px; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--mono); font-size: 12px; font-weight: 500;
+      color: var(--text-muted); text-decoration: none; margin-bottom: 26px;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .hero-label {
+      font-family: var(--mono); font-size: 11.5px; font-weight: 500; color: var(--accent);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      display: flex; align-items: center; gap: 10px; margin-bottom: 22px;
+    }
+    .hero-label::before { content: ''; display: block; width: 22px; height: 1.5px; background: var(--accent); border-radius: 2px; }
+    .hero h1 {
+      font-size: clamp(32px, 6vw, 46px); font-weight: 600; letter-spacing: -0.03em;
+      line-height: 1.12; color: #4a4a4a; margin-bottom: 12px;
+    }
+    .hero-subtitle { font-family: var(--mono); font-size: 12.5px; font-weight: 400; color: var(--text-muted); letter-spacing: 0.04em; margin-bottom: 26px; }
+    .hero-subtitle span { color: var(--text-secondary); }
+    .hero-desc { font-size: 16.5px; font-weight: 400; color: var(--text-secondary); max-width: 600px; line-height: 1.75; }
+    .hero-desc strong { color: var(--text-primary); font-weight: 500; }
+
+    /* ── Section base ── */
+    section { padding: 60px 0; }
+    .sec-eyebrow {
+      font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px;
+    }
+    .sec-title { font-size: 25px; font-weight: 600; letter-spacing: -0.02em; color: #4a4a4a; margin-bottom: 14px; }
+    .sec-body { font-size: 15.5px; color: var(--text-secondary); line-height: 1.78; max-width: 620px; }
+    .sec-body p + p { margin-top: 14px; }
+    .subsection { margin-top: 44px; }
+    .subsection:first-child { margin-top: 0; }
+    .subsection-title { font-size: 17px; font-weight: 600; color: var(--text-primary); letter-spacing: -0.01em; margin-bottom: 10px; }
+    .subsection-kicker { font-family: var(--mono); font-size: 10.5px; font-weight: 500; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+
+    /* ── Focus cards (reused) ── */
+    .focus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 24px; }
+    .focus-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .focus-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 20px 18px; transition: box-shadow 0.18s, border-color 0.18s; }
+    .focus-card:hover { border-color: #c8c8c2; box-shadow: 0 4px 18px rgba(0,0,0,0.07); }
+    .focus-icon { font-size: 19px; margin-bottom: 10px; display: block; }
+    .focus-card h3 { font-size: 13.5px; font-weight: 600; letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: 6px; }
+    .focus-card p { font-size: 12.5px; color: var(--text-secondary); line-height: 1.62; }
+    .focus-card ul { margin-top: 8px; padding-left: 16px; }
+    .focus-card li { font-size: 12.5px; color: var(--text-secondary); line-height: 1.7; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .tag { font-family: var(--mono); font-size: 10.5px; font-weight: 500; padding: 3px 8px; border-radius: 4px; background: var(--accent-light); color: var(--accent); letter-spacing: 0.01em; }
+
+    /* ── Diagram cards ── */
+    .diagram-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: 22px 22px 16px; margin-top: 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    .diagram-card svg { width: 100%; height: auto; display: block; }
+    .diagram-caption { font-size: 12px; color: var(--text-muted); margin-top: 10px; line-height: 1.6; font-family: var(--mono); }
+    .diagram-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+    @media (max-width: 640px) { .diagram-row { grid-template-columns: 1fr; } }
+
+    /* ── Equation blocks ── */
+    .equation-block {
+      background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent);
+      border-radius: 0 10px 10px 0; padding: 16px 20px; margin-top: 16px;
+      font-family: var(--mono); font-size: 14px; color: var(--text-primary); overflow-x: auto;
+    }
+    .equation-block .eq-label { display: block; font-family: var(--sans); font-size: 11px; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+    /* ── Data table ── */
+    .data-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 13px; }
+    .data-table th, .data-table td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border-subtle); }
+    .data-table th { font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); font-weight: 500; }
+    .data-table td { color: var(--text-secondary); }
+    .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); }
+    .table-wrap .data-table { margin-top: 0; }
+    .table-wrap th, .table-wrap td { border-bottom: 1px solid var(--border-subtle); }
+    .table-wrap tr:last-child td { border-bottom: none; }
+
+    /* ── Bullet groups ── */
+    .bullet-group { margin-top: 14px; }
+    .bullet-group ul { padding-left: 18px; }
+    .bullet-group li { font-size: 14.5px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 4px; }
+    .bullet-group .example { font-size: 13.5px; color: var(--text-muted); margin-top: 6px; padding-left: 18px; }
+
+    /* ── Two-column layout ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 20px; }
+    @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; gap: 28px; } }
+
+    /* ── Research-style list (reused) ── */
+    .research-list { display: flex; flex-direction: column; gap: 0; margin-top: 8px; }
+    .research-item { display: flex; align-items: flex-start; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--border-subtle); }
+    .research-item:first-child { border-top: 1px solid var(--border-subtle); }
+    .research-num { font-family: var(--mono); font-size: 11px; color: var(--text-muted); padding-top: 3px; min-width: 20px; font-weight: 500; }
+    .research-name { font-size: 14.5px; font-weight: 500; color: var(--text-primary); line-height: 1.5; }
+    .research-name em { display: block; font-style: normal; font-size: 13px; font-weight: 400; color: var(--text-secondary); margin-top: 3px; }
+    .research-name a { color: var(--accent); text-decoration: none; }
+    .research-name a:hover { text-decoration: underline; }
+
+    /* ── Person grid ── */
+    .person-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+    .person-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 18px 16px; }
+    .person-card h4 { font-size: 13.5px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+    .person-card p { font-size: 12.5px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 8px; }
+    .person-card a { font-family: var(--mono); font-size: 11px; color: var(--accent); text-decoration: none; }
+    .person-card a:hover { text-decoration: underline; }
+    .person-links { display: flex; flex-direction: column; gap: 2px; }
+
+    /* ── Tool grid ── */
+    .tool-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 16px; }
+    @media (max-width: 640px) { .tool-grid { grid-template-columns: repeat(2, 1fr); } }
+    .tool-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 14px 12px; }
+    .tool-card h4 { font-size: 12.5px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+    .tool-card p { font-size: 11.5px; color: var(--text-secondary); line-height: 1.55; margin-bottom: 6px; }
+    .tool-card a { font-family: var(--mono); font-size: 10.5px; color: var(--accent); text-decoration: none; }
+    .tool-card a:hover { text-decoration: underline; }
+
+    /* ── Citation block ── */
+    .citation-block { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border-subtle); }
+    .citation-block p { font-size: 11.5px; color: var(--text-muted); line-height: 1.7; margin-bottom: 6px; }
+    .citation-block a { color: var(--text-muted); }
+
+    /* ── Footer ── */
+    footer { padding: 30px 0; border-top: 1px solid var(--border); }
+    .footer-inner { max-width: 760px; margin: 0 auto; padding: 0 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .footer-text { font-family: var(--mono); font-size: 11.5px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+
+    /* ── Animations ── */
+    .fade { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .fade.in { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 560px) {
+      .hero { padding: 52px 0 40px; }
+      section { padding: 44px 0; }
+      .focus-grid, .focus-grid.cols-3 { grid-template-columns: 1fr; }
+      .person-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 14px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ──────────────────────────────────── -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">tim<em>.</em>sent</a>
+    <ul class="nav-links">
+      <li><a href="#foundations">Foundations</a></li>
+      <li><a href="#supervised">Supervised</a></li>
+      <li><a href="#unsupervised">Unsupervised</a></li>
+      <li><a href="#reinforcement">Reinforcement</a></li>
+      <li><a href="#neural-networks">Neural Nets</a></li>
+      <li><a href="#resources">Resources</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Hero ─────────────────────────────────── -->
+<div class="container">
+  <div class="hero fade">
+    <a href="index.html" class="back-link">← Back to portfolio</a>
+    <p class="hero-label">Talk / Reference Deck</p>
+    <h1>The Language of Machine Learning</h1>
+    <p class="hero-subtitle"><span>Overview of Terminology &amp; Concepts</span> · Updated November 1, 2018 · Tim Sent</p>
+    <p class="hero-desc">
+      A working vocabulary for machine learning — from what separates <strong>Artificial General Intelligence</strong>
+      from the narrow, task-specific systems we actually build today, through the three families of learning problems,
+      into the core algorithms, cost functions, and neural network fundamentals underneath them.
+    </p>
+  </div>
+</div>
+
+<div class="hr"></div>
+
+<!-- ── Foundations ─────────────────────────── -->
+<section id="foundations">
+  <div class="container">
+    <p class="sec-eyebrow fade">Foundations</p>
+    <h2 class="sec-title fade">Making sense of the terminology</h2>
+
+    <div class="subsection fade">
+      <div class="focus-grid">
+        <div class="focus-card">
+          <span class="focus-icon">🌐</span>
+          <h3>Artificial General Intelligence (AGI) / Strong AI</h3>
+          <ul>
+            <li>The ability for a machine to apply intelligence to any range of intellectual tasks a human can perform</li>
+            <li>A machine that is conscious, sentient and self-aware</li>
+            <li>Doesn't currently exist and is far from reality — often called the "holy grail of AI"</li>
+            <li>Frequently depicted as a dystopian vision of intelligent machines eradicating or enslaving humanity, as in <em>The Matrix</em> or <em>The Terminator</em></li>
+          </ul>
+        </div>
+        <div class="focus-card">
+          <span class="focus-icon">🎯</span>
+          <h3>Artificial Narrow Intelligence (ANI) / Weak AI</h3>
+          <ul>
+            <li>The ability for a machine to perform a narrow, pre-defined range of tasks focused on a specific problem, without genuine intelligence or awareness</li>
+            <li>The terms Artificial Intelligence, ANI, Weak AI, and Machine Learning are frequently used interchangeably</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection fade">
+      <p class="subsection-kicker">Three families</p>
+      <h3 class="subsection-title">Types of Machine Learning</h3>
+      <p class="sec-body">There are three types of Artificial Narrow Intelligence (ANI), distinguished by how the algorithm learns from data.</p>
+      <div class="focus-grid cols-3">
+        <div class="focus-card">
+          <span class="focus-icon">🏷️</span>
+          <h3>Supervised &amp; Semi-Supervised</h3>
+          <p>An algorithm is provided a set of labeled training data where the output is already known. It learns a function mapping inputs to outputs. Includes regression and classification problems.</p>
+        </div>
+        <div class="focus-card">
+          <span class="focus-icon">🧩</span>
+          <h3>Unsupervised Learning</h3>
+          <p>Algorithms find structure from a set of unlabeled data. Includes clustering and non-clustering problems.</p>
+        </div>
+        <div class="focus-card">
+          <span class="focus-icon">🎮</span>
+          <h3>Reinforcement Learning</h3>
+          <p>Software agents take actions in an environment so as to maximize some notion of cumulative reward.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ── Supervised Learning ─────────────────── -->
+<section id="supervised">
+  <div class="container">
+    <p class="sec-eyebrow fade">Supervised Learning</p>
+    <h2 class="sec-title fade">Teaching a machine from labeled examples</h2>
+
+    <div class="subsection fade">
+      <p class="subsection-kicker">Problem Types</p>
+      <div class="two-col">
+        <div>
+          <h3 class="subsection-title">Regression</h3>
+          <p class="sec-body">Predicts a continuous output by mapping input variables to a continuous function — learning the relationship between a dependent variable and one or more independent variables from labeled training data.</p>
+          <p class="sec-body" style="margin-top: 10px; font-size: 13.5px; color: var(--text-muted);">Example: predicting the price of a house by learning the relationship between features like square footage, number of bedrooms, and age of the house.</p>
+        </div>
+        <div>
+          <h3 class="subsection-title">Classification</h3>
+          <p class="sec-body">Predicts a discrete output by mapping input variables into categories or classes — training an algorithm to identify which category a new observation belongs to, based on labeled examples.</p>
+          <p class="sec-body" style="margin-top: 10px; font-size: 13.5px; color: var(--text-muted);">Example: identifying email as spam or not-spam by learning characteristics from labeled training data.</p>
+        </div>
+      </div>
+
+      <div class="diagram-card">
+        <svg viewBox="0 0 640 120" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrow1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 Z" fill="#9a9a94" />
+            </marker>
+          </defs>
+          <rect x="10" y="35" width="130" height="50" rx="8" fill="#edf2ff" stroke="#1c5fdd" stroke-width="1.2"/>
+          <text x="75" y="55" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#1c5fdd">Labeled</text>
+          <text x="75" y="68" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#1c5fdd">Training Set</text>
+
+          <line x1="140" y1="60" x2="185" y2="60" stroke="#9a9a94" stroke-width="1.2" marker-end="url(#arrow1)"/>
+
+          <rect x="185" y="35" width="150" height="50" rx="8" fill="#ffffff" stroke="#e4e4e0" stroke-width="1.2"/>
+          <text x="260" y="55" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#19191a">Machine Learning</text>
+          <text x="260" y="68" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#19191a">Algorithm</text>
+
+          <line x1="335" y1="60" x2="380" y2="60" stroke="#9a9a94" stroke-width="1.2" marker-end="url(#arrow1)"/>
+
+          <rect x="380" y="35" width="150" height="50" rx="8" fill="#ffffff" stroke="#e4e4e0" stroke-width="1.2"/>
+          <text x="455" y="53" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#19191a">Predictive Model</text>
+          <text x="455" y="66" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#19191a">(Hypothesis)</text>
+          <text x="455" y="78" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#1c5fdd">h&#952;(x)</text>
+
+          <line x1="530" y1="60" x2="575" y2="60" stroke="#9a9a94" stroke-width="1.2" marker-end="url(#arrow1)"/>
+
+          <rect x="575" y="35" width="55" height="50" rx="8" fill="#edf2ff" stroke="#1c5fdd" stroke-width="1.2"/>
+          <text x="602" y="64" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#1c5fdd">y</text>
+
+          <text x="455" y="20" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#9a9a94">new example (x) →</text>
+        </svg>
+        <p class="diagram-caption">Supervised learning pipeline — a labeled training set produces a model that maps new feature vectors (x) to predictions (y).</p>
+      </div>
+    </div>
+
+    <div class="subsection fade">
+      <p class="subsection-kicker">Regression Problems</p>
+      <h3 class="subsection-title">Univariate Linear Regression</h3>
+      <p class="sec-body">Predicting house sales using linear regression with one variable. The first step in a regression problem is choosing a function — linear, quadratic, or second-order polynomial — to fit the training data.</p>
+
+      <div class="table-wrap" style="margin-top: 16px;">
+        <table class="data-table">
+          <thead><tr><th>Index (i)</th><th>Size in ft² (x)</th><th>Price ($1,000s) (y)</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>2,104</td><td>460</td></tr>
+            <tr><td>2</td><td>1,416</td><td>232</td></tr>
+            <tr><td>3</td><td>1,534</td><td>315</td></tr>
+            <tr><td>4</td><td>852</td><td>178</td></tr>
+            <tr><td>…</td><td>…</td><td>…</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="equation-block">
+        <span class="eq-label">Hypothesis — a function mapping x's to y's</span>
+        h<sub>θ</sub>(x) = θ₀ + θ₁x
+      </div>
+
+      <p class="sec-body" style="margin-top: 16px;">
+        This dataset — home sales from Portland, Oregon — is labeled training data: it includes both the input (size) and the output being predicted (price). The learning algorithm's job is to train θ₀ and θ₁ so the hypothesis fits the data as closely as possible.
+      </p>
+
+      <div class="diagram-card">
+        <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg">
+          <!-- gridlines -->
+          <g stroke="#ededea" stroke-width="1">
+            <line x1="50" y1="164" x2="370" y2="164"/>
+            <line x1="50" y1="128" x2="370" y2="128"/>
+            <line x1="50" y1="92" x2="370" y2="92"/>
+            <line x1="50" y1="56" x2="370" y2="56"/>
+            <line x1="122" y1="20" x2="122" y2="200"/>
+            <line x1="194" y1="20" x2="194" y2="200"/>
+            <line x1="266" y1="20" x2="266" y2="200"/>
+            <line x1="338" y1="20" x2="338" y2="200"/>
+          </g>
+          <!-- axes -->
+          <line x1="50" y1="20" x2="50" y2="200" stroke="#c8c8c2" stroke-width="1.5"/>
+          <line x1="50" y1="200" x2="370" y2="200" stroke="#c8c8c2" stroke-width="1.5"/>
+          <!-- y ticks -->
+          <text x="44" y="204" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">0</text>
+          <text x="44" y="168" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">125</text>
+          <text x="44" y="132" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">250</text>
+          <text x="44" y="96" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">375</text>
+          <text x="44" y="60" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">500</text>
+          <text x="8" y="115" font-family="JetBrains Mono, monospace" font-size="9" fill="#60605a" transform="rotate(-90 8 115)">Price ($1,000s)</text>
+          <!-- x ticks -->
+          <text x="50" y="214" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">0</text>
+          <text x="122" y="214" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">500</text>
+          <text x="194" y="214" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">1,000</text>
+          <text x="266" y="214" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">1,500</text>
+          <text x="338" y="214" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">2,000</text>
+          <text x="210" y="232" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#60605a">Size (ft²)</text>
+          <!-- fitted line: y = -42.73 + 0.2296x, least-squares fit to the four table rows -->
+          <line x1="152" y1="158" x2="370" y2="34" stroke="#1c5fdd" stroke-width="2"/>
+          <!-- residuals (dashed) -->
+          <line x1="356" y1="34.4" x2="356" y2="41.5" stroke="#e8433d" stroke-width="1" stroke-dasharray="2,2"/>
+          <line x1="256" y1="116.5" x2="256" y2="98.3" stroke="#e8433d" stroke-width="1" stroke-dasharray="2,2"/>
+          <line x1="273" y1="86.6" x2="273" y2="88.6" stroke="#e8433d" stroke-width="1" stroke-dasharray="2,2"/>
+          <line x1="174" y1="135.9" x2="174" y2="145.0" stroke="#e8433d" stroke-width="1" stroke-dasharray="2,2"/>
+          <!-- data points from the table above -->
+          <circle cx="356" cy="34.4" r="4.5" fill="#19191a"/>
+          <circle cx="256" cy="116.5" r="4.5" fill="#19191a"/>
+          <circle cx="273" cy="86.6" r="4.5" fill="#19191a"/>
+          <circle cx="174" cy="135.9" r="4.5" fill="#19191a"/>
+        </svg>
+        <p class="diagram-caption">The four labeled examples from the table, with the least-squares fit h<sub>θ</sub>(x) = −42.7 + 0.230x (dashed red = residual error per point).</p>
+      </div>
+    </div>
+
+    <div class="subsection fade">
+      <h3 class="subsection-title">Cost (Loss) Function</h3>
+      <p class="sec-body">
+        Machine learning algorithms rely on minimizing or maximizing an "objective function." The functions that are minimized are called cost or loss functions — they measure the difference between the predicted value and the actual value, and choosing parameters that minimize this error is how a model is fit.
+      </p>
+      <p class="sec-body" style="margin-top: 10px;">
+        The most common loss function for regression is <strong>Mean Squared Error (MSE, L2)</strong>. Other options include Mean Absolute Error (MAE, L1), Huber Loss / Smooth MAE, Log-Cosh Error, and Quantile Loss. MSE is easier to solve; MAE is more robust to outliers.
+      </p>
+      <div class="diagram-row">
+        <div class="equation-block">
+          <span class="eq-label">Mean Squared Error (L2)</span>
+          J(θ) = (1/m) Σᵢ₌₁ᵐ (h<sub>θ</sub>(x⁽ⁱ⁾) − y⁽ⁱ⁾)²
+        </div>
+        <div class="equation-block">
+          <span class="eq-label">Mean Absolute Error (L1)</span>
+          J(θ) = (1/m) Σᵢ₌₁ᵐ &#124;h<sub>θ</sub>(x⁽ⁱ⁾) − y⁽ⁱ⁾&#124;
+        </div>
+      </div>
+      <div class="diagram-card">
+        <svg viewBox="0 0 400 190" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrowstep" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto">
+              <path d="M0,0 L5,2.5 L0,5 Z" fill="#e8433d" />
+            </marker>
+          </defs>
+          <g stroke="#ededea" stroke-width="1">
+            <line x1="30" y1="65" x2="370" y2="65"/>
+            <line x1="30" y1="110" x2="370" y2="110"/>
+            <line x1="30" y1="155" x2="370" y2="155"/>
+          </g>
+          <line x1="30" y1="20" x2="30" y2="160" stroke="#c8c8c2" stroke-width="1.5"/>
+          <line x1="30" y1="160" x2="370" y2="160" stroke="#c8c8c2" stroke-width="1.5"/>
+          <!-- correct bowl: J(θ) is HIGH at the edges, LOW at the center -->
+          <path d="M 60 30 Q 200 150 340 30" fill="none" stroke="#1c5fdd" stroke-width="2"/>
+          <!-- gradient descent steps walking down the left wall toward the minimum -->
+          <circle cx="88" cy="52" r="3.5" fill="#e8433d"/>
+          <line x1="90" y1="55" x2="126" y2="73" stroke="#e8433d" stroke-width="1.2" marker-end="url(#arrowstep)"/>
+          <circle cx="130" cy="75" r="3.5" fill="#e8433d"/>
+          <line x1="132" y1="78" x2="168" y2="85" stroke="#e8433d" stroke-width="1.2" marker-end="url(#arrowstep)"/>
+          <circle cx="172" cy="88" r="3.5" fill="#e8433d"/>
+          <line x1="176" y1="89" x2="196" y2="90" stroke="#e8433d" stroke-width="1.2" marker-end="url(#arrowstep)"/>
+          <circle cx="200" cy="90" r="4.5" fill="#e8433d"/>
+          <line x1="200" y1="90" x2="200" y2="170" stroke="#e8433d" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="200" y="182" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#9a9a94">θ</text>
+          <text x="10" y="90" font-family="JetBrains Mono, monospace" font-size="9" fill="#9a9a94" transform="rotate(-90 10 90)">J(θ)</text>
+          <text x="245" y="80" font-family="JetBrains Mono, monospace" font-size="9" fill="#e8433d">minimum</text>
+        </svg>
+        <p class="diagram-caption">Gradient descent: each step moves against ∇J(θ), converging toward the minimum at the bottom of the bowl.</p>
+      </div>
+    </div>
+
+    <div class="subsection fade">
+      <h3 class="subsection-title">Batch Gradient Descent</h3>
+      <div class="equation-block">
+        <span class="eq-label">Update rule — repeat until convergence</span>
+        θⱼ := θⱼ − α · ∂J(θ)/∂θⱼ &nbsp;&nbsp;(simultaneously for every j)
+      </div>
+      <div class="bullet-group">
+        <ul>
+          <li>Each step of gradient descent sums over all the training examples</li>
+          <li>The goal is to find the smallest value for the cost function</li>
+          <li>It's often helpful to adjust features to a similar scale — a technique called <strong>feature scaling</strong></li>
+          <li>The first step is taking the derivative of the cost function</li>
+          <li>Identify starting values for the hyperparameters and a learning rate, then iterate until convergence</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subsection fade">
+      <h3 class="subsection-title">Multivariate Linear Regression</h3>
+      <p class="sec-body">Linear regression with multiple variables, represented as vectors.</p>
+      <div class="table-wrap" style="margin-top: 16px;">
+        <table class="data-table">
+          <thead><tr><th>i</th><th>Size (x₁)</th><th>Bedrooms (x₂)</th><th>Floors (x₃)</th><th>Age (x₄)</th><th>Price (y)</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>2,104</td><td>5</td><td>1</td><td>45</td><td>460</td></tr>
+            <tr><td>2</td><td>1,416</td><td>3</td><td>2</td><td>40</td><td>232</td></tr>
+            <tr><td>3</td><td>1,534</td><td>3</td><td>2</td><td>30</td><td>315</td></tr>
+            <tr><td>4</td><td>852</td><td>2</td><td>1</td><td>36</td><td>178</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="equation-block">
+        <span class="eq-label">Hypothesis, generalized to n features</span>
+        h<sub>θ</sub>(x) = θ₀ + θ₁x₁ + θ₂x₂ + θ₃x₃ + θ₄x₄ &nbsp;=&nbsp; θᵀx
+      </div>
+      <p class="sec-body" style="margin-top: 14px; font-size: 13.5px; color: var(--text-muted);">
+        For convenience of notation, x₀ is defined as 1, so the parameter vector θ and feature vector x are both (n+1) × 1, and the hypothesis reduces to the vector product θᵀx.
+      </p>
+      <div class="diagram-card">
+        <svg viewBox="0 0 340 150" xmlns="http://www.w3.org/2000/svg">
+          <g font-family="JetBrains Mono, monospace" font-size="11" fill="#19191a">
+            <!-- theta vector -->
+            <path d="M 20 15 L 12 15 L 12 135 L 20 135" fill="none" stroke="#c8c8c2" stroke-width="1.2"/>
+            <path d="M 70 15 L 78 15 L 78 135 L 70 135" fill="none" stroke="#c8c8c2" stroke-width="1.2"/>
+            <text x="45" y="35" text-anchor="middle">θ₀</text>
+            <text x="45" y="60" text-anchor="middle">θ₁</text>
+            <text x="45" y="85" text-anchor="middle">θ₂</text>
+            <text x="45" y="110" text-anchor="middle">⋮</text>
+            <text x="45" y="130" text-anchor="middle">θₙ</text>
+            <text x="45" y="150" text-anchor="middle" font-size="10" fill="#9a9a94">θ (n+1 × 1)</text>
+
+            <text x="120" y="80" text-anchor="middle" fill="#9a9a94" font-size="14">·</text>
+
+            <!-- x vector -->
+            <path d="M 155 15 L 147 15 L 147 135 L 155 135" fill="none" stroke="#1c5fdd" stroke-width="1.2"/>
+            <path d="M 205 15 L 213 15 L 213 135 L 205 135" fill="none" stroke="#1c5fdd" stroke-width="1.2"/>
+            <text x="180" y="35" text-anchor="middle" fill="#1c5fdd">x₀=1</text>
+            <text x="180" y="60" text-anchor="middle" fill="#1c5fdd">x₁</text>
+            <text x="180" y="85" text-anchor="middle" fill="#1c5fdd">x₂</text>
+            <text x="180" y="110" text-anchor="middle" fill="#1c5fdd">⋮</text>
+            <text x="180" y="130" text-anchor="middle" fill="#1c5fdd">xₙ</text>
+            <text x="180" y="150" text-anchor="middle" font-size="10" fill="#9a9a94">x (n+1 × 1)</text>
+
+            <text x="250" y="80" text-anchor="middle" fill="#9a9a94" font-size="14">=</text>
+            <text x="295" y="84" text-anchor="middle" font-size="15" fill="#19191a">θᵀx</text>
+          </g>
+        </svg>
+        <p class="diagram-caption">The hypothesis as a dot product of two (n+1)-dimensional column vectors.</p>
+      </div>
+    </div>
+
+    <div class="subsection fade">
+      <p class="subsection-kicker">Classification Problems</p>
+      <h3 class="subsection-title">Logistic Regression</h3>
+      <p class="sec-body">Binary classification using logistic regression — a sigmoid function maps any real-valued input into a range between 0 and 1, and a threshold on that output defines the decision boundary.</p>
+      <div class="diagram-row">
+        <div class="equation-block">
+          <span class="eq-label">Sigmoid function</span>
+          g(z) = 1 / (1 + e<sup>−z</sup>)
+        </div>
+        <div class="equation-block">
+          <span class="eq-label">Logistic regression hypothesis</span>
+          h<sub>θ</sub>(x) = g(θᵀx) = 1 / (1 + e<sup>−θᵀx</sup>)
+        </div>
+      </div>
+      <div class="diagram-row">
+        <div class="diagram-card">
+          <svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#ededea" stroke-width="1">
+              <line x1="40" y1="80" x2="270" y2="80"/>
+              <line x1="155" y1="20" x2="155" y2="140"/>
+            </g>
+            <line x1="40" y1="20" x2="40" y2="140" stroke="#c8c8c2" stroke-width="1.5"/>
+            <line x1="40" y1="140" x2="270" y2="140" stroke="#c8c8c2" stroke-width="1.5"/>
+            <line x1="40" y1="80" x2="270" y2="80" stroke="#9a9a94" stroke-width="1" stroke-dasharray="3,3"/>
+            <polyline points="40,139.7 59,139.2 78,137.8 98,134.3 117,125.7 136,107.7 155,80 174,52.3 193,34.3 213,25.7 232,22.2 251,20.8 270,20.3"
+                      fill="none" stroke="#1c5fdd" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="155" cy="80" r="3.5" fill="#e8433d"/>
+            <text x="35" y="18" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">1</text>
+            <text x="35" y="144" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">0</text>
+            <text x="270" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">z</text>
+            <text x="10" y="84" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">0.5</text>
+            <text x="150" y="160" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#9a9a94">g(z), plotted from computed values</text>
+          </svg>
+        </div>
+        <div class="diagram-card">
+          <svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#ededea" stroke-width="1">
+              <line x1="30" y1="80" x2="280" y2="80"/>
+              <line x1="155" y1="20" x2="155" y2="140"/>
+            </g>
+            <line x1="30" y1="20" x2="30" y2="140" stroke="#c8c8c2" stroke-width="1.5"/>
+            <line x1="30" y1="140" x2="280" y2="140" stroke="#c8c8c2" stroke-width="1.5"/>
+            <line x1="60" y1="130" x2="240" y2="40" stroke="#1c5fdd" stroke-width="2" stroke-dasharray="4,3"/>
+            <circle cx="90" cy="110" r="4.5" fill="#1c5fdd"/>
+            <circle cx="110" cy="125" r="4.5" fill="#1c5fdd"/>
+            <circle cx="140" cy="95" r="4.5" fill="#1c5fdd"/>
+            <circle cx="160" cy="60" r="4.5" fill="#e8433d"/>
+            <circle cx="200" cy="50" r="4.5" fill="#e8433d"/>
+            <circle cx="220" cy="70" r="4.5" fill="#e8433d"/>
+            <circle cx="252" cy="30" r="5.5" fill="#edf2ff" stroke="#1c5fdd" stroke-width="1.5"/>
+            <text x="257" y="27" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#60605a">y=0</text>
+            <circle cx="252" cy="46" r="5.5" fill="#fdecea" stroke="#e8433d" stroke-width="1.5"/>
+            <text x="257" y="43" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#60605a">y=1</text>
+            <text x="150" y="155" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#9a9a94">Decision boundary: θᵀx = 0</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection fade">
+      <h3 class="subsection-title">Logistic Regression for Complex Datasets</h3>
+      <p class="sec-body">Modeling a decision function from labeled training data — real data often isn't linearly separable, which calls for a non-linear boundary built from polynomial feature terms.</p>
+      <div class="diagram-row">
+        <div class="equation-block">
+          <span class="eq-label">Linear decision boundary</span>
+          z = θ₀ + θ₁x₁ + θ₂x₂
+        </div>
+        <div class="equation-block">
+          <span class="eq-label">Non-linear decision boundary (polynomial features)</span>
+          z = θ₀ + θ₁x₁ + θ₂x₂ + θ₃x₁² + θ₄x₁x₂ + θ₅x₂²
+        </div>
+      </div>
+      <div class="diagram-row">
+        <div class="diagram-card">
+          <svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#ededea" stroke-width="1">
+              <line x1="30" y1="45" x2="280" y2="45"/><line x1="30" y1="90" x2="280" y2="90"/><line x1="30" y1="115" x2="280" y2="115"/>
+              <line x1="100" y1="20" x2="100" y2="140"/><line x1="210" y1="20" x2="210" y2="140"/>
+            </g>
+            <line x1="30" y1="20" x2="30" y2="140" stroke="#c8c8c2" stroke-width="1.5"/>
+            <line x1="30" y1="140" x2="280" y2="140" stroke="#c8c8c2" stroke-width="1.5"/>
+            <text x="30" y="152" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">x₁</text>
+            <text x="14" y="24" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">x₂</text>
+            <line x1="150" y1="20" x2="150" y2="140" stroke="#1c5fdd" stroke-width="2" stroke-dasharray="4,3"/>
+            <circle cx="70" cy="60" r="4.5" fill="#1c5fdd"/>
+            <circle cx="90" cy="100" r="4.5" fill="#1c5fdd"/>
+            <circle cx="60" cy="110" r="4.5" fill="#1c5fdd"/>
+            <circle cx="105" cy="40" r="4.5" fill="#1c5fdd"/>
+            <circle cx="200" cy="60" r="4.5" fill="#e8433d"/>
+            <circle cx="220" cy="100" r="4.5" fill="#e8433d"/>
+            <circle cx="240" cy="70" r="4.5" fill="#e8433d"/>
+            <circle cx="195" cy="120" r="4.5" fill="#e8433d"/>
+            <text x="150" y="158" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#9a9a94">z = 0 is a straight line</text>
+          </svg>
+        </div>
+        <div class="diagram-card">
+          <svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#ededea" stroke-width="1">
+              <line x1="30" y1="45" x2="280" y2="45"/><line x1="30" y1="90" x2="280" y2="90"/><line x1="30" y1="115" x2="280" y2="115"/>
+              <line x1="100" y1="20" x2="100" y2="140"/><line x1="210" y1="20" x2="210" y2="140"/>
+            </g>
+            <line x1="30" y1="20" x2="30" y2="140" stroke="#c8c8c2" stroke-width="1.5"/>
+            <line x1="30" y1="140" x2="280" y2="140" stroke="#c8c8c2" stroke-width="1.5"/>
+            <text x="30" y="152" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">x₁</text>
+            <text x="14" y="24" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">x₂</text>
+            <circle cx="155" cy="80" r="45" fill="none" stroke="#1c5fdd" stroke-width="2" stroke-dasharray="4,3"/>
+            <circle cx="155" cy="80" r="4.5" fill="#1c5fdd"/>
+            <circle cx="140" cy="65" r="4.5" fill="#1c5fdd"/>
+            <circle cx="170" cy="95" r="4.5" fill="#1c5fdd"/>
+            <circle cx="155" cy="110" r="4.5" fill="#1c5fdd"/>
+            <circle cx="60" cy="40" r="4.5" fill="#e8433d"/>
+            <circle cx="240" cy="120" r="4.5" fill="#e8433d"/>
+            <circle cx="230" cy="40" r="4.5" fill="#e8433d"/>
+            <circle cx="70" cy="120" r="4.5" fill="#e8433d"/>
+            <text x="150" y="158" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#9a9a94">z = 0 is an ellipse</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection fade">
+      <h3 class="subsection-title">Multi-Class Classification — One-Versus-All</h3>
+      <div class="bullet-group">
+        <ul>
+          <li>Instead of y = {0,1}, expand the definition so y = {0,1…n}, where n is the number of classes</li>
+          <li>Choose one class, lump all others into a single second class</li>
+          <li>Repeat this for each class, applying binary logistic regression to each case</li>
+          <li>Use the hypothesis that returns the highest value as the prediction</li>
+        </ul>
+      </div>
+      <div class="equation-block">
+        <span class="eq-label">Train one classifier per class, predict the highest-confidence class</span>
+        h<sub>θ</sub><sup>(i)</sup>(x) = P(y = i | x; θ) for i = 1, 2, 3 &nbsp;&nbsp;→&nbsp;&nbsp; prediction = max<sub>i</sub> h<sub>θ</sub><sup>(i)</sup>(x)
+      </div>
+      <div class="diagram-card">
+        <svg viewBox="0 0 400 155" xmlns="http://www.w3.org/2000/svg">
+          <g>
+            <line x1="20" y1="20" x2="20" y2="120" stroke="#c8c8c2" stroke-width="1.2"/>
+            <line x1="20" y1="120" x2="120" y2="120" stroke="#c8c8c2" stroke-width="1.2"/>
+            <circle cx="45" cy="55" r="4.5" fill="#1c5fdd"/><circle cx="55" cy="70" r="4.5" fill="#1c5fdd"/><circle cx="35" cy="80" r="4.5" fill="#1c5fdd"/>
+            <circle cx="85" cy="60" r="4.5" fill="#d8d8d3"/><circle cx="95" cy="90" r="4.5" fill="#d8d8d3"/><circle cx="70" cy="45" r="4.5" fill="#d8d8d3"/>
+            <line x1="66" y1="95" x2="30" y2="35" stroke="#1c5fdd" stroke-width="1.5" stroke-dasharray="3,3"/>
+            <text x="70" y="140" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">h&#952;⁽¹⁾(x)</text>
+          </g>
+          <g transform="translate(140,0)">
+            <line x1="20" y1="20" x2="20" y2="120" stroke="#c8c8c2" stroke-width="1.2"/>
+            <line x1="20" y1="120" x2="120" y2="120" stroke="#c8c8c2" stroke-width="1.2"/>
+            <circle cx="45" cy="55" r="4.5" fill="#d8d8d3"/><circle cx="55" cy="70" r="4.5" fill="#d8d8d3"/><circle cx="35" cy="80" r="4.5" fill="#d8d8d3"/>
+            <circle cx="85" cy="60" r="4.5" fill="#e8433d"/><circle cx="95" cy="90" r="4.5" fill="#e8433d"/><circle cx="70" cy="45" r="4.5" fill="#e8433d"/>
+            <line x1="66" y1="95" x2="105" y2="35" stroke="#e8433d" stroke-width="1.5" stroke-dasharray="3,3"/>
+            <text x="70" y="140" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">h&#952;⁽²⁾(x)</text>
+          </g>
+          <g transform="translate(280,0)">
+            <line x1="20" y1="20" x2="20" y2="120" stroke="#c8c8c2" stroke-width="1.2"/>
+            <line x1="20" y1="120" x2="120" y2="120" stroke="#c8c8c2" stroke-width="1.2"/>
+            <circle cx="45" cy="55" r="4.5" fill="#d8d8d3"/><circle cx="55" cy="70" r="4.5" fill="#788c5d"/><circle cx="35" cy="80" r="4.5" fill="#d8d8d3"/>
+            <circle cx="85" cy="60" r="4.5" fill="#d8d8d3"/><circle cx="95" cy="90" r="4.5" fill="#788c5d"/><circle cx="70" cy="45" r="4.5" fill="#788c5d"/>
+            <line x1="30" y1="105" x2="110" y2="45" stroke="#788c5d" stroke-width="1.5" stroke-dasharray="3,3"/>
+            <text x="70" y="140" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">h&#952;⁽³⁾(x)</text>
+          </g>
+        </svg>
+        <p class="diagram-caption">One-versus-all: three separate binary classifiers, one per class, each with its own decision boundary</p>
+      </div>
+    </div>
+
+    <div class="subsection fade">
+      <h3 class="subsection-title">Support Vector Machine — Large Margin Classifier</h3>
+      <div class="bullet-group">
+        <ul>
+          <li>Finds the decision boundary that maximizes the margin between classes, not just any separating line</li>
+          <li>The points closest to the boundary — the support vectors — define that margin</li>
+        </ul>
+      </div>
+      <div class="diagram-row">
+        <div class="equation-block">
+          <span class="eq-label">Decision function</span>
+          f(x) = sign(wᵀx + b)
+        </div>
+        <div class="equation-block">
+          <span class="eq-label">Margin-maximizing objective</span>
+          min (1/2)‖w‖² &nbsp;s.t.&nbsp; y⁽ⁱ⁾(wᵀx⁽ⁱ⁾ + b) ≥ 1
+        </div>
+      </div>
+      <div class="diagram-card">
+        <svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg">
+          <line x1="30" y1="20" x2="30" y2="140" stroke="#c8c8c2" stroke-width="1.5"/>
+          <line x1="30" y1="140" x2="280" y2="140" stroke="#c8c8c2" stroke-width="1.5"/>
+          <line x1="70" y1="130" x2="240" y2="30" stroke="#1c5fdd" stroke-width="2"/>
+          <line x1="50" y1="130" x2="220" y2="30" stroke="#c8c8c2" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="90" y1="130" x2="260" y2="30" stroke="#c8c8c2" stroke-width="1" stroke-dasharray="3,3"/>
+          <circle cx="70" cy="115" r="5" fill="none" stroke="#1c5fdd" stroke-width="1.5"/>
+          <circle cx="70" cy="115" r="2" fill="#1c5fdd"/>
+          <circle cx="90" cy="125" r="4.5" fill="#1c5fdd"/>
+          <circle cx="120" cy="100" r="4.5" fill="#1c5fdd"/>
+          <circle cx="200" cy="55" r="5" fill="none" stroke="#e8433d" stroke-width="1.5"/>
+          <circle cx="200" cy="55" r="2" fill="#e8433d"/>
+          <circle cx="230" cy="45" r="4.5" fill="#e8433d"/>
+          <circle cx="180" cy="65" r="4.5" fill="#e8433d"/>
+          <text x="150" y="158" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#9a9a94">Margin — ringed points are the support vectors</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="subsection fade">
+      <h3 class="subsection-title">K-Nearest Neighbors (k-NN)</h3>
+      <p class="sec-body">A non-parametric, lazy learning algorithm that predicts labels based on the nearest training examples — based on feature similarity, often used as a baseline against SVM or neural network classifiers.</p>
+      <div class="equation-block">
+        <span class="eq-label">Euclidean distance between the new sample and a training point</span>
+        d(x, x′) = √( Σᵢ₌₁ⁿ (xᵢ − x′ᵢ)² )
+      </div>
+      <div class="two-col" style="margin-top: 16px;">
+        <div>
+          <h4 style="font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px;">Method</h4>
+          <div class="bullet-group" style="margin-top: 0;">
+            <ul>
+              <li>Specify a positive integer k and a new sample</li>
+              <li>Select the k entries in the database closest to the new sample</li>
+              <li>Find the most common classification among those entries</li>
+              <li>Assign that classification to the new sample</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="two-col" style="grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 0;">
+            <div>
+              <h4 style="font-size: 12.5px; font-weight: 600; color: #788c5d; margin-bottom: 6px;">Pros</h4>
+              <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.6;">Simple to implement; no training time required.</p>
+            </div>
+            <div>
+              <h4 style="font-size: 12.5px; font-weight: 600; color: var(--pink); margin-bottom: 6px;">Cons</h4>
+              <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.6;">Computationally expensive and memory-intensive; uses training data at test time.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="diagram-card">
+        <svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg">
+          <line x1="30" y1="20" x2="30" y2="140" stroke="#c8c8c2" stroke-width="1.5"/>
+          <line x1="30" y1="140" x2="280" y2="140" stroke="#c8c8c2" stroke-width="1.5"/>
+          <circle cx="150" cy="80" r="40" fill="#edf2ff" stroke="#1c5fdd" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="150" y1="80" x2="130" y2="60" stroke="#c8c8c2" stroke-width="1"/>
+          <line x1="150" y1="80" x2="170" y2="65" stroke="#c8c8c2" stroke-width="1"/>
+          <line x1="150" y1="80" x2="140" y2="105" stroke="#c8c8c2" stroke-width="1"/>
+          <circle cx="150" cy="80" r="5.5" fill="#19191a"/>
+          <text x="150" y="65" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#60605a">x_new</text>
+          <circle cx="130" cy="60" r="4.5" fill="#1c5fdd"/>
+          <circle cx="170" cy="65" r="4.5" fill="#1c5fdd"/>
+          <circle cx="140" cy="105" r="4.5" fill="#e8433d"/>
+          <circle cx="60" cy="40" r="4.5" fill="#e8433d"/>
+          <circle cx="230" cy="120" r="4.5" fill="#1c5fdd"/>
+          <text x="197" y="60" font-family="JetBrains Mono, monospace" font-size="8" fill="#1c5fdd">k = 3</text>
+          <text x="150" y="158" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#9a9a94">2 of 3 nearest neighbors are class ● — new point is classified ●</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ── Unsupervised Learning ───────────────── -->
+<section id="unsupervised">
+  <div class="container">
+    <p class="sec-eyebrow fade">Unsupervised Learning</p>
+    <h2 class="sec-title fade">Allowing the machine to infer structure from unlabeled data</h2>
+    <div class="two-col fade">
+      <div>
+        <h3 class="subsection-title">Clustering</h3>
+        <p class="sec-body">Derives structure from unstructured data by analyzing relationships among its variables.</p>
+        <p class="sec-body" style="margin-top: 10px; font-size: 13.5px; color: var(--text-muted);">Example: automatically grouping genetic data into similar groups related by variables such as lifespan, location, and roles.</p>
+      </div>
+      <div>
+        <h3 class="subsection-title">Non-Clustering</h3>
+        <p class="sec-body">Approaches problems with little or no idea what the results should look like, deriving structure without necessarily knowing the effect of each variable. There's no feedback based on prediction results.</p>
+        <p class="sec-body" style="margin-top: 10px; font-size: 13.5px; color: var(--text-muted);">Example: Blind Source Separation, or the "Cocktail Party Problem."</p>
+      </div>
+    </div>
+    <div class="diagram-card fade">
+      <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="90" cy="70" r="38" fill="none" stroke="#1c5fdd" stroke-width="1" stroke-dasharray="3,3"/>
+        <circle cx="75" cy="60" r="4" fill="#1c5fdd"/><circle cx="100" cy="55" r="4" fill="#1c5fdd"/><circle cx="90" cy="85" r="4" fill="#1c5fdd"/><circle cx="110" cy="80" r="4" fill="#1c5fdd"/>
+        <circle cx="220" cy="50" r="34" fill="none" stroke="#e8433d" stroke-width="1" stroke-dasharray="3,3"/>
+        <circle cx="210" cy="45" r="4" fill="#e8433d"/><circle cx="230" cy="55" r="4" fill="#e8433d"/><circle cx="220" cy="35" r="4" fill="#e8433d"/>
+        <circle cx="310" cy="100" r="36" fill="none" stroke="#788c5d" stroke-width="1" stroke-dasharray="3,3"/>
+        <circle cx="300" cy="90" r="4" fill="#788c5d"/><circle cx="320" cy="105" r="4" fill="#788c5d"/><circle cx="305" cy="115" r="4" fill="#788c5d"/><circle cx="325" cy="90" r="4" fill="#788c5d"/>
+        <text x="200" y="140" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#9a9a94">Unlabeled data grouped into structure by similarity</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ── Reinforcement Learning ──────────────── -->
+<section id="reinforcement">
+  <div class="container">
+    <p class="sec-eyebrow fade">Reinforcement Learning</p>
+    <h2 class="sec-title fade">Teaching software agents to maximize reward</h2>
+    <div class="sec-body fade">
+      <p>
+        Reinforcement learning differs from supervised learning in that correct input/output pairs need not be presented, and sub-optimal actions need not be explicitly corrected. The focus is on performance — finding a balance between <strong>exploration</strong> of uncharted territory and <strong>exploitation</strong> of current knowledge.
+      </p>
+      <p>
+        The exploration-versus-exploitation trade-off has been most thoroughly studied through the multi-armed bandit problem, and in finite Markov Decision Processes (MDPs). Examples include learning to play games such as Go at a level exceeding human performance, as well as robotics, chemistry, and traffic-signal control in smart cities.
+      </p>
+    </div>
+    <div class="diagram-card fade">
+      <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrow2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="#9a9a94" />
+          </marker>
+        </defs>
+        <rect x="30" y="60" width="110" height="60" rx="10" fill="#edf2ff" stroke="#1c5fdd" stroke-width="1.2"/>
+        <text x="85" y="95" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#1c5fdd">Agent</text>
+        <rect x="260" y="60" width="110" height="60" rx="10" fill="#ffffff" stroke="#e4e4e0" stroke-width="1.2"/>
+        <text x="315" y="95" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#19191a">Environment</text>
+        <path d="M 140 80 L 260 80" fill="none" stroke="#9a9a94" stroke-width="1.2" marker-end="url(#arrow2)"/>
+        <text x="200" y="72" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#9a9a94">Action Aₜ</text>
+        <path d="M 260 105 L 140 105" fill="none" stroke="#9a9a94" stroke-width="1.2" marker-end="url(#arrow2)"/>
+        <text x="200" y="120" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#9a9a94">State Sₜ₊₁, Reward Rₜ₊₁</text>
+      </svg>
+      <p class="diagram-caption">The agent–environment loop: the agent acts, the environment returns a new state and reward, repeat.</p>
+    </div>
+    <div class="citation-block fade">
+      <p>Traffic-signal reinforcement learning: web.eecs.utk.edu/~itamar/Papers/IET_ITS_2010.pdf</p>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ── Neural Networks ─────────────────────── -->
+<section id="neural-networks">
+  <div class="container">
+    <p class="sec-eyebrow fade">Artificial Neural Networks</p>
+    <h2 class="sec-title fade">Modeling a neuron</h2>
+    <div class="sec-body fade">
+      <p>A neuron is a computational unit that takes input(s), performs some calculation, and produces an output.</p>
+    </div>
+    <div class="two-col fade">
+      <div>
+        <h3 class="subsection-title">Input Axon</h3>
+        <p class="sec-body">Data forward-propagates from neuron to neuron as computations complete in each layer of the network.</p>
+      </div>
+      <div>
+        <h3 class="subsection-title">Activation Function</h3>
+        <p class="sec-body">The neuron combines inputs with weights (parameters) and applies an activation function — usually sigmoid — to produce an output.</p>
+      </div>
+    </div>
+    <div class="sec-body fade" style="margin-top: 14px;">
+      <p><strong>Output Axon</strong> — the activation's output propagates to the next layer. If that layer is the output layer, a SoftMax function normalizes it into a probability distribution.</p>
+    </div>
+
+    <div class="equation-block fade">
+      <span class="eq-label">Neuron activation</span>
+      a = g( Σᵢ wᵢxᵢ + b ) &nbsp;&nbsp;where g is the sigmoid, g(z) = 1 / (1 + e<sup>−z</sup>)
+    </div>
+
+    <div class="diagram-row fade">
+      <div class="diagram-card">
+        <svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="150" cy="90" r="26" fill="#edf2ff" stroke="#1c5fdd" stroke-width="1.5"/>
+          <text x="150" y="95" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#1c5fdd">Σ, g</text>
+          <g font-family="JetBrains Mono, monospace" font-size="9" fill="#9a9a94">
+            <line x1="40" y1="30" x2="126" y2="78" stroke="#c8c8c2" stroke-width="1"/>
+            <circle cx="40" cy="30" r="4" fill="#19191a"/><text x="17" y="26">x0=1</text><text x="80" y="50">w0j</text>
+            <line x1="40" y1="65" x2="126" y2="85" stroke="#c8c8c2" stroke-width="1"/>
+            <circle cx="40" cy="65" r="4" fill="#19191a"/><text x="20" y="61">x1</text><text x="80" y="70">w1j</text>
+            <line x1="40" y1="100" x2="126" y2="96" stroke="#c8c8c2" stroke-width="1"/>
+            <circle cx="40" cy="100" r="4" fill="#19191a"/><text x="20" y="96">x2</text><text x="80" y="93">w2j</text>
+            <line x1="40" y1="135" x2="126" y2="103" stroke="#c8c8c2" stroke-width="1"/>
+            <circle cx="40" cy="135" r="4" fill="#19191a"/><text x="20" y="131">x3</text><text x="80" y="118">w3j</text>
+            <line x1="176" y1="90" x2="250" y2="90" stroke="#1c5fdd" stroke-width="1.5"/>
+            <text x="255" y="94">output axon</text>
+          </g>
+          <text x="150" y="160" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#9a9a94">bias unit + weighted inputs → sigmoid → output</text>
+        </svg>
+      </div>
+      <div class="diagram-card">
+        <svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
+          <g fill="#19191a">
+            <circle cx="30" cy="50" r="5"/><circle cx="30" cy="90" r="5"/><circle cx="30" cy="130" r="5"/>
+          </g>
+          <g fill="#edf2ff" stroke="#1c5fdd" stroke-width="1.2">
+            <circle cx="110" cy="35" r="6"/><circle cx="110" cy="70" r="6"/><circle cx="110" cy="105" r="6"/><circle cx="110" cy="140" r="6"/>
+          </g>
+          <g fill="#edf2ff" stroke="#1c5fdd" stroke-width="1.2">
+            <circle cx="190" cy="45" r="6"/><circle cx="190" cy="80" r="6"/><circle cx="190" cy="115" r="6"/>
+          </g>
+          <g fill="#1c5fdd">
+            <circle cx="265" cy="90" r="7"/>
+          </g>
+          <g stroke="#e4e4e0" stroke-width="0.7">
+            <line x1="35" y1="50" x2="104" y2="35"/><line x1="35" y1="50" x2="104" y2="70"/><line x1="35" y1="50" x2="104" y2="105"/><line x1="35" y1="50" x2="104" y2="140"/>
+            <line x1="35" y1="90" x2="104" y2="35"/><line x1="35" y1="90" x2="104" y2="70"/><line x1="35" y1="90" x2="104" y2="105"/><line x1="35" y1="90" x2="104" y2="140"/>
+            <line x1="35" y1="130" x2="104" y2="35"/><line x1="35" y1="130" x2="104" y2="70"/><line x1="35" y1="130" x2="104" y2="105"/><line x1="35" y1="130" x2="104" y2="140"/>
+            <line x1="116" y1="35" x2="184" y2="45"/><line x1="116" y1="35" x2="184" y2="80"/><line x1="116" y1="35" x2="184" y2="115"/>
+            <line x1="116" y1="70" x2="184" y2="45"/><line x1="116" y1="70" x2="184" y2="80"/><line x1="116" y1="70" x2="184" y2="115"/>
+            <line x1="116" y1="105" x2="184" y2="45"/><line x1="116" y1="105" x2="184" y2="80"/><line x1="116" y1="105" x2="184" y2="115"/>
+            <line x1="116" y1="140" x2="184" y2="45"/><line x1="116" y1="140" x2="184" y2="80"/><line x1="116" y1="140" x2="184" y2="115"/>
+            <line x1="196" y1="45" x2="258" y2="90"/><line x1="196" y1="80" x2="258" y2="90"/><line x1="196" y1="115" x2="258" y2="90"/>
+          </g>
+          <text x="30" y="165" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">Input</text>
+          <text x="110" y="165" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">Hidden 1</text>
+          <text x="190" y="165" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">Hidden 2</text>
+          <text x="265" y="165" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">Output</text>
+        </svg>
+      </div>
+    </div>
+    <p class="diagram-caption fade" style="margin-top: 10px;">Training a neural network to analyze visual imagery — signal propagates forward from the input layer, through hidden layers, to an output.</p>
+
+    <div class="equation-block fade" style="margin-top: 18px;">
+      <span class="eq-label">Forward propagation — each layer feeds the next</span>
+      a<sup>(2)</sup> = g(Θ<sup>(1)</sup>x) &nbsp;&nbsp; a<sup>(3)</sup> = g(Θ<sup>(2)</sup>a<sup>(2)</sup>) &nbsp;&nbsp; h<sub>Θ</sub>(x) = a<sup>(4)</sup> = g(Θ<sup>(3)</sup>a<sup>(3)</sup>)
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ── Resources ────────────────────────────── -->
+<section id="resources">
+  <div class="container">
+    <p class="sec-eyebrow fade">Resources</p>
+    <h2 class="sec-title fade">Courses, reading, people, and tools</h2>
+
+    <div class="subsection fade">
+      <h3 class="subsection-title">Stanford Courses</h3>
+      <p class="sec-body">These courses provide great intuition about how machine learning algorithms work.</p>
+      <div class="research-list">
+        <div class="research-item">
+          <span class="research-num">01</span>
+          <div class="research-name">CS229: Machine Learning <span style="font-weight:400; color: var(--text-muted);">— Andrew Ng, Ron Dror</span>
+            <em>A broad introduction to machine learning and statistical pattern recognition: supervised, unsupervised, and reinforcement learning, and learning theory.
+              <a href="http://cs229.stanford.edu/" target="_blank" rel="noopener">cs229.stanford.edu</a> ·
+              <a href="https://www.youtube.com/watch?v=UzxYlbK2c7E&list=PLA89DCFA6ADACE599" target="_blank" rel="noopener">lecture videos</a>
+            </em>
+          </div>
+        </div>
+        <div class="research-item">
+          <span class="research-num">02</span>
+          <div class="research-name">CS224n: Natural Language Processing with Deep Learning <span style="font-weight:400; color: var(--text-muted);">— Chris Manning, Abigail See</span>
+            <em>A thorough introduction to cutting-edge Deep Learning research for NLP, through lectures, assignments, and a final project.
+              <a href="http://web.stanford.edu/class/cs224n" target="_blank" rel="noopener">web.stanford.edu/class/cs224n</a> ·
+              <a href="https://www.youtube.com/watch?v=OQQ-W_63UgQ&list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6" target="_blank" rel="noopener">lecture videos</a>
+            </em>
+          </div>
+        </div>
+        <div class="research-item">
+          <span class="research-num">03</span>
+          <div class="research-name">CS231n: Convolutional Neural Networks for Visual Recognition <span style="font-weight:400; color: var(--text-muted);">— Fei-Fei Li, Justin Johnson, Serena Yeung</span>
+            <em>A deep dive into end-to-end deep learning architectures for computer vision — search, image understanding, mapping, medicine, drones, and self-driving cars.
+              <a href="http://cs231n.stanford.edu/" target="_blank" rel="noopener">cs231n.stanford.edu</a> ·
+              <a href="https://www.youtube.com/watch?v=vT1JzLTH4G4&list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv" target="_blank" rel="noopener">lecture videos</a>
+            </em>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection fade">
+      <h3 class="subsection-title">Coursera Courses</h3>
+      <div class="research-list">
+        <div class="research-item">
+          <span class="research-num">01</span>
+          <div class="research-name">Machine Learning <span style="font-weight:400; color: var(--text-muted);">— Andrew Ng</span>
+            <em>The most effective machine learning techniques, with both theoretical underpinnings and practical implementation.
+              <a href="https://www.coursera.org/learn/machine-learning" target="_blank" rel="noopener">coursera.org/learn/machine-learning</a>
+            </em>
+          </div>
+        </div>
+        <div class="research-item">
+          <span class="research-num">02</span>
+          <div class="research-name">Deep Learning Specialization <span style="font-weight:400; color: var(--text-muted);">— Andrew Ng, Younes Bensouda Mourri</span>
+            <em>Five courses covering convolutional networks, RNNs, LSTM, Adam, Dropout, BatchNorm, and initialization strategies, applied via case studies in healthcare, autonomous driving, and NLP.
+              <a href="https://www.coursera.org/specializations/deep-learning" target="_blank" rel="noopener">coursera.org/specializations/deep-learning</a>
+            </em>
+          </div>
+        </div>
+        <div class="research-item">
+          <span class="research-num">03</span>
+          <div class="research-name">AI For Everyone <span style="font-weight:400; color: var(--text-muted);">— Andrew Ng</span>
+            <em>A non-technical course on spotting opportunities to apply AI, what today's AI can and can't do, and how AI is impacting society.
+              <a href="https://www.coursera.org/learn/ai-for-everyone" target="_blank" rel="noopener">coursera.org/learn/ai-for-everyone</a>
+            </em>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection fade">
+      <h3 class="subsection-title">Reading Material</h3>
+      <p class="sec-body">Must-read books on machine learning:</p>
+      <div class="focus-grid" style="margin-top: 16px;">
+        <div class="focus-card">
+          <h3>Deep Learning</h3>
+          <p>Ian Goodfellow</p>
+        </div>
+        <div class="focus-card">
+          <h3>Reinforcement Learning</h3>
+          <p>Richard S. Sutton</p>
+        </div>
+      </div>
+      <div class="citation-block">
+        <p>Roweis, S. T.; Saul, L. K. (2000). "Nonlinear Dimensionality Reduction by Locally Linear Embedding." <em>Science</em>. 290 (5500): 2323–2326. doi:10.1126/science.290.5500.2323. PMID 11125150.</p>
+        <p>Definition of "overfitting" at OxfordDictionaries.com (statistics-specific definition).</p>
+        <p>Bühlmann, Peter; Van De Geer, Sara (2011). "Statistics for High-Dimensional Data." <em>Springer Series in Statistics</em>: 9. doi:10.1007/978-3-642-20192-9. ISBN 978-3-642-20191-2. If p &gt; n, the ordinary least squares estimator is not unique and will heavily overfit the data — a form of complexity regularization becomes necessary.</p>
+      </div>
+    </div>
+
+    <div class="subsection fade">
+      <h3 class="subsection-title">Notable AI Thought Leaders</h3>
+      <p class="sec-body">Individuals leading research into machine learning.</p>
+      <div class="person-grid">
+        <div class="person-card">
+          <h4>Andrew Ng</h4>
+          <p>CEO/Founder, Landing AI; Co-Founder, Coursera; Adjunct Professor, Stanford University; formerly Chief Scientist at Baidu and founding lead of Google Brain.</p>
+          <div class="person-links">
+            <a href="https://www.andrewng.org/" target="_blank" rel="noopener">andrewng.org</a>
+            <a href="https://www.linkedin.com/in/andrewyng" target="_blank" rel="noopener">linkedin.com/in/andrewyng</a>
+          </div>
+        </div>
+        <div class="person-card">
+          <h4>Yoshua Bengio</h4>
+          <p>Department of Computer Science and Operations Research; Canada Research Chair in Statistical Learning Algorithms.</p>
+          <div class="person-links">
+            <a href="http://www.iro.umontreal.ca/~bengioy/yoshua_en/index.html" target="_blank" rel="noopener">iro.umontreal.ca/~bengioy</a>
+            <a href="https://www.linkedin.com/in/yoshuabengio" target="_blank" rel="noopener">linkedin.com/in/yoshuabengio</a>
+          </div>
+        </div>
+        <div class="person-card">
+          <h4>Ian Goodfellow</h4>
+          <p>Best known for Generative Adversarial Networks (GANs) and as lead author of <em>Deep Learning</em>.</p>
+          <div class="person-links">
+            <a href="https://www.linkedin.com/in/ian-goodfellow-b7187213" target="_blank" rel="noopener">linkedin.com/in/ian-goodfellow</a>
+          </div>
+        </div>
+        <div class="person-card">
+          <h4>Yann LeCun</h4>
+          <p>VP &amp; Chief AI Scientist at Facebook (Meta).</p>
+          <div class="person-links">
+            <a href="http://yann.lecun.com/" target="_blank" rel="noopener">yann.lecun.com</a>
+            <a href="https://www.linkedin.com/in/yann-lecun-0b999" target="_blank" rel="noopener">linkedin.com/in/yann-lecun</a>
+          </div>
+        </div>
+        <div class="person-card">
+          <h4>Geoffrey Hinton</h4>
+          <p>English-Canadian cognitive psychologist and computer scientist, most noted for his work on artificial neural networks.</p>
+          <div class="person-links">
+            <a href="http://www.cs.toronto.edu/~hinton" target="_blank" rel="noopener">cs.toronto.edu/~hinton</a>
+          </div>
+        </div>
+        <div class="person-card">
+          <h4>Richard S. Sutton</h4>
+          <p>Professor of Computer Science and iCORE Chair, University of Alberta; a founding father of modern computational reinforcement learning.</p>
+          <div class="person-links">
+            <a href="http://incompleteideas.net/" target="_blank" rel="noopener">incompleteideas.net</a>
+            <a href="https://www.linkedin.com/in/richard-sutton-0653545" target="_blank" rel="noopener">linkedin.com/in/richard-sutton</a>
+          </div>
+        </div>
+        <div class="person-card">
+          <h4>Fei-Fei Li</h4>
+          <p>Professor of AI at Stanford; Director of Stanford's AI Lab; former Chief Scientist of AI/ML at Google Cloud; Co-Founder/Chair of AI4ALL.</p>
+          <div class="person-links">
+            <a href="http://vision.stanford.edu/feifeili" target="_blank" rel="noopener">vision.stanford.edu/feifeili</a>
+            <a href="https://www.linkedin.com/in/fei-fei-li-4541247" target="_blank" rel="noopener">linkedin.com/in/fei-fei-li</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection fade">
+      <h3 class="subsection-title">Development Tools</h3>
+      <p class="sec-body">Tools that lend themselves to modeling machine learning algorithms.</p>
+      <div class="tool-grid">
+        <div class="tool-card"><h4>MATLAB</h4><p>Linear algebra, vectorized data sets, matrix operations.</p><a href="https://www.mathworks.com/products/matlab/plot-gallery.html" target="_blank" rel="noopener">mathworks.com</a></div>
+        <div class="tool-card"><h4>Octave</h4><p>MATLAB-compatible language for modeling ML algorithms.</p><a href="https://www.gnu.org/software/octave/" target="_blank" rel="noopener">gnu.org/software/octave</a></div>
+        <div class="tool-card"><h4>NumPy</h4><p>High-level math functions supporting multi-dimensional arrays and matrices.</p><a href="http://www.numpy.org/" target="_blank" rel="noopener">numpy.org</a></div>
+        <div class="tool-card"><h4>PyTorch</h4><p>Open-source ML library for applications like NLP.</p><a href="https://pytorch.org/" target="_blank" rel="noopener">pytorch.org</a></div>
+        <div class="tool-card"><h4>SciPy</h4><p>Python-based ecosystem for math, science, and engineering.</p><a href="https://www.scipy.org/" target="_blank" rel="noopener">scipy.org</a></div>
+        <div class="tool-card"><h4>Theano</h4><p>Library and optimizing compiler for evaluating matrix-valued expressions.</p><a href="http://deeplearning.net/software/theano" target="_blank" rel="noopener">deeplearning.net/theano</a></div>
+        <div class="tool-card"><h4>Matplotlib</h4><p>2D plotting library producing publication-quality figures.</p><a href="https://matplotlib.org/" target="_blank" rel="noopener">matplotlib.org</a></div>
+        <div class="tool-card"><h4>TensorFlow</h4><p>Open-source dataflow library for neural networks.</p><a href="https://www.tensorflow.org/" target="_blank" rel="noopener">tensorflow.org</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="back-link" style="margin-bottom: 0;">← Back to portfolio</a>
+    <span class="footer-text">© 2026 Tim Sent</span>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }),
+    { threshold: 0.1, rootMargin: '0px 0px -24px 0px' }
+  );
+  document.querySelectorAll('.fade').forEach(el => io.observe(el));
+  const hero = document.querySelector('.hero.fade');
+  if (hero) requestAnimationFrame(() => hero.classList.add('in'));
+</script>
+</body>
+</html>
