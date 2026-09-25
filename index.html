@@ -461,6 +461,81 @@
     }
     .connect-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
 
+    /* ── Cert rows ── */
+    .cert-table {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 8px;
+    }
+    .cert-row {
+      display: flex;
+      gap: 20px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .cert-row:first-child { border-top: 1px solid var(--border-subtle); }
+    .cert-provider {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      min-width: 160px;
+      flex-shrink: 0;
+      padding-top: 1px;
+    }
+    .cert-items {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.78;
+    }
+    .badge-wip {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 9.5px;
+      font-weight: 500;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 1px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+      vertical-align: middle;
+      margin-left: 4px;
+    }
+
+    /* ── Volunteering stats ── */
+    .vol-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 28px 0 0;
+    }
+    .vol-stat {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 20px 18px;
+      text-align: center;
+      transition: box-shadow 0.18s, border-color 0.18s;
+    }
+    .vol-stat:hover {
+      border-color: #c8c8c2;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.07);
+    }
+    .vol-stat-num {
+      font-family: var(--mono);
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 7px;
+    }
+    .vol-stat-label {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
     /* ── Footer ── */
     footer {
       padding: 30px 0;
@@ -516,7 +591,10 @@
       .service-grid { grid-template-columns: 1fr; }
       .tech-row { flex-direction: column; gap: 4px; }
       .tech-category { min-width: auto; }
-      .nav-links { gap: 18px; }
+      .nav-links { gap: 14px; }
+      .cert-row { flex-direction: column; gap: 4px; }
+      .cert-provider { min-width: auto; }
+      .vol-stats { grid-template-columns: 1fr; }
       .footer-inner { flex-direction: column; text-align: center; }
     }
   </style>
@@ -529,9 +607,11 @@
     <a href="#" class="nav-brand">tim<em>.</em>sent</a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
+      <li><a href="#certifications">Certs</a></li>
       <li><a href="#news">News</a></li>
       <li><a href="#research">Research</a></li>
       <li><a href="#service">Service</a></li>
+      <li><a href="#volunteering">Volunteer</a></li>
       <li><a href="#connect">Connect</a></li>
     </ul>
   </div>
@@ -628,6 +708,60 @@
         <div class="tags">
           <span class="tag">VLMs</span>
           <span class="tag">Real-Time Systems</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ── Certifications ────────────────────────── -->
+<section id="certifications">
+  <div class="container">
+    <p class="sec-eyebrow fade">Certifications &amp; Learning</p>
+    <h2 class="sec-title fade">Credentials &amp; continuous learning</h2>
+
+    <div style="margin-top: 8px;">
+      <p class="sec-eyebrow fade" style="margin-bottom: 10px;">Certifications</p>
+      <div class="cert-table fade">
+        <div class="cert-row">
+          <span class="cert-provider">Salesforce</span>
+          <span class="cert-items">Certified Distinguished Architect · Certified Enterprise Architect · Certified AI Specialist · Certified AI Associate · Certified Data Cloud Consultant · Certified Platform Administrator II · Certified Platform Administrator · Certified App Builder · Certified Force Developer · Accelerate Leadership Program</span>
+        </div>
+        <div class="cert-row">
+          <span class="cert-provider">Anthropic</span>
+          <span class="cert-items">Claude Certified Architect · Claude Certified Associate · Claude Certified Developer</span>
+        </div>
+        <div class="cert-row">
+          <span class="cert-provider">Amazon</span>
+          <span class="cert-items">Certified Machine Learning Specialty · AWS Certified AI Practitioner · Certified Cloud Practitioner</span>
+        </div>
+        <div class="cert-row">
+          <span class="cert-provider">NVIDIA</span>
+          <span class="cert-items">NVIDIA AI Infrastructure and Operations · NVIDIA Generative AI LLMs · Agentic AI</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 36px;">
+      <p class="sec-eyebrow fade" style="margin-bottom: 10px;">Continuous Learning</p>
+      <div class="cert-table fade">
+        <div class="cert-row">
+          <span class="cert-provider">Anthropic Courses</span>
+          <span class="cert-items">AI Fluency for Builders · AI Fluency: Framework &amp; Foundations · Building with the Claude API · Claude 101 · Claude Code 101 · Claude Code in Action · Claude With Google Vortex AI · Claude With Amazon Bedrock · Introduction to Agent Skills · Introduction to Model Context Protocol · Introduction to Subagents · Model Context Protocol: Advanced Topics</span>
+        </div>
+        <div class="cert-row">
+          <span class="cert-provider">Trailhead</span>
+          <span class="cert-items">All Star Ranger · Agentblazer Innovator (FY27) · Agentblazer Champion (FY27) · Agentblazer Legend (FY27)</span>
+        </div>
+        <div class="cert-row">
+          <span class="cert-provider">Superbadges</span>
+          <span class="cert-items">Advanced Flow for Agentforce · Apex for Agentforce · Agentforce for Service · Prompt Builder Templates · Lightning Experience Rollout</span>
+        </div>
+        <div class="cert-row">
+          <span class="cert-provider">Continuing Education</span>
+          <span class="cert-items">MIT AI &amp; Machine Learning · Stanford Machine Learning · Harvard CS50 Artificial Intelligence · TOGAF Enterprise Architecture · Great Learning AI/ML Mentor</span>
         </div>
       </div>
     </div>
@@ -795,6 +929,55 @@
         <p class="philosophy-line">Build systems that don't just automate — <strong>but elevate.</strong></p>
         <p class="philosophy-line">Design architectures that don't just scale — <strong>but adapt.</strong></p>
         <p class="philosophy-line">Lead in a way that doesn't just deliver — <strong>but inspires.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ── Volunteering ──────────────────────────── -->
+<section id="volunteering">
+  <div class="container">
+    <p class="sec-eyebrow fade">Volunteering</p>
+    <h2 class="sec-title fade">FIRST Robotics &amp; Team 5199</h2>
+    <div class="sec-body fade">
+      <p>
+        As a programming mentor for <strong>FIRST Robotics Competition (FRC) Team 5199, The Robot Dolphins From
+        Outer Space</strong>, I developed and taught a structured curriculum covering coding principles, robot
+        control systems, and advanced topics like AI-driven vision tracking.
+      </p>
+      <p>
+        A defining moment came when we migrated to a modern, command-based framework and introduced computer
+        vision systems that unlocked full autonomous operation — rebuilding the entire codebase around
+        structured, reusable patterns that scale season over season instead of resetting with each graduating class.
+      </p>
+      <p>
+        Standing with Team 5199 at the <strong>FIRST Championship</strong>, watching students operate under the
+        pressure of the world's largest robotics stage — calm, coordinated, and confident — is the clearest
+        proof that the programming culture we built together is durable and self-sustaining.
+      </p>
+    </div>
+
+    <div class="vol-stats fade">
+      <div class="vol-stat">
+        <div class="vol-stat-num">1,000+</div>
+        <div class="vol-stat-label">Volunteering hours<br>logged with Salesforce</div>
+      </div>
+      <div class="vol-stat">
+        <div class="vol-stat-num">$20K</div>
+        <div class="vol-stat-label">Volunteer Impact Award<br>grant for Team 5199</div>
+      </div>
+      <div class="vol-stat">
+        <div class="vol-stat-num">#1</div>
+        <div class="vol-stat-label">Salesforce volunteering<br>leaderboard ranking</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 36px;">
+      <div class="philosophy-block fade">
+        <p class="philosophy-line">Every hour spent debugging code late into the evening led directly to students writing software that lets robots <strong>see the field and act on their own.</strong></p>
+        <p class="philosophy-line">The builders of the future are already in the room — they just need access to <strong>enterprise-grade mentorship.</strong></p>
       </div>
     </div>
   </div>
