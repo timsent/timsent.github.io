@@ -10,18 +10,18 @@ Personal portfolio and blog site for Tim Sent, served via GitHub Pages at www.ti
 
 - `index.html` — portfolio homepage
 - `*.html` — individual blog post/article pages
-- `css/style.css` — legacy stylesheet (used by older content); new pages use inline `<style>` blocks instead
+- `css/styles.css` — the single shared stylesheet for every page
 
 ## Conventions
 
-**Styling:** All modern pages embed their CSS in a `<style>` block in `<head>`. The design system uses CSS custom properties defined in `:root`:
+**Styling:** All pages link `css/styles.css`; there are no inline `<style>` blocks or per-page stylesheets. Page-specific components live in that same file, so check for an existing class before adding one. Variants are modifier classes (`hero-home`, `wide`, `cols-3`/`cols-4`). The design system uses CSS custom properties defined in `:root`:
 
 - Fonts: `Inter` (body) and `JetBrains Mono` (code/labels), loaded from Google Fonts
 - Colors: `--bg`, `--surface`, `--border`, `--text-primary`, `--text-secondary`, `--text-muted`, `--accent` (#1c5fdd), `--pink` (#e8433d)
 - Layout: centered 720px max-width container with 28px side padding via `.container`
 - Nav: sticky, blurred backdrop, 58px height
 
-**New pages** should follow the `language-of-machine-learning.html` or `nvidia-cobalt-robotics.html` pattern (self-contained HTML with inline styles matching the design system above), not `css/style.css`.
+**New pages** should follow the `language-of-machine-learning.html` or `nvidia-cobalt-robotics.html` pattern (link `css/styles.css` and reuse its classes; add new rules there only when no existing component fits).
 
 ## Deployment
 
