@@ -17,46 +17,67 @@
   <rect x="10" y="42" width="94" height="24" rx="4" fill="#fff" stroke="#c8c8c2" stroke-width="1"/><rect x="10" y="42" width="3" height="24" fill="#12386e"/>
   <text x="19" y="57" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Campaign Mgmt</text>
   <rect x="10" y="70" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="10" y="70" width="3" height="20" fill="#12386e"/>
+  <text x="19" y="84" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Lead Gen</text>
   <rect x="10" y="94" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="10" y="94" width="3" height="20" fill="#12386e"/>
+  <text x="19" y="108" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Content Mgmt</text>
   <rect x="10" y="118" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="10" y="118" width="3" height="20" fill="#12386e"/>
+  <text x="19" y="132" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Direct Mktg</text>
 
   <!-- column 2 (Sales) -->
   <rect x="114" y="42" width="94" height="24" rx="4" fill="#fff" stroke="#c8c8c2" stroke-width="1"/><rect x="114" y="42" width="3" height="24" fill="#1c4f95"/>
   <text x="123" y="57" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Lead Mgmt</text>
   <rect x="114" y="70" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="114" y="70" width="3" height="20" fill="#1c4f95"/>
+  <text x="123" y="84" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Account Mgmt</text>
   <rect x="114" y="94" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="114" y="94" width="3" height="20" fill="#1c4f95"/>
+  <text x="123" y="108" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Contact Mgmt</text>
 
   <!-- column 3 (Product) -->
   <rect x="218" y="42" width="94" height="24" rx="4" fill="#fff" stroke="#c8c8c2" stroke-width="1"/><rect x="218" y="42" width="3" height="24" fill="#1c5fdd"/>
   <text x="227" y="57" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Catalog Mgmt</text>
   <rect x="218" y="70" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="218" y="70" width="3" height="20" fill="#1c5fdd"/>
+  <text x="227" y="84" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Proposal Mgmt</text>
   <rect x="218" y="94" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="218" y="94" width="3" height="20" fill="#1c5fdd"/>
+  <text x="227" y="108" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Quote Mgmt</text>
   <rect x="218" y="118" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="218" y="118" width="3" height="20" fill="#1c5fdd"/>
+  <text x="227" y="132" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Pricing Mgmt</text>
   <rect x="218" y="142" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="218" y="142" width="3" height="20" fill="#1c5fdd"/>
+  <text x="227" y="156" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Subscriptions</text>
 
   <!-- column 4 (Order) -->
   <rect x="322" y="42" width="94" height="24" rx="4" fill="#fff" stroke="#c8c8c2" stroke-width="1"/><rect x="322" y="42" width="3" height="24" fill="#4a7fe8"/>
   <text x="331" y="57" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Order Mgmt</text>
   <rect x="322" y="70" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="322" y="70" width="3" height="20" fill="#4a7fe8"/>
+  <text x="331" y="84" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Order Capture</text>
   <rect x="322" y="94" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="322" y="94" width="3" height="20" fill="#4a7fe8"/>
+  <text x="331" y="108" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Promotions</text>
   <rect x="322" y="118" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="322" y="118" width="3" height="20" fill="#4a7fe8"/>
+  <text x="331" y="132" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Payments</text>
   <rect x="322" y="142" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="322" y="142" width="3" height="20" fill="#4a7fe8"/>
+  <text x="331" y="156" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Inventory</text>
   <rect x="322" y="166" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="322" y="166" width="3" height="20" fill="#4a7fe8"/>
+  <text x="331" y="180" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Tax Mgmt</text>
 
   <!-- column 5 (Billing) -->
   <rect x="426" y="42" width="94" height="24" rx="4" fill="#fff" stroke="#c8c8c2" stroke-width="1"/><rect x="426" y="42" width="3" height="24" fill="#6f93e0"/>
   <text x="435" y="57" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Billing Mgmt</text>
   <rect x="426" y="70" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="426" y="70" width="3" height="20" fill="#6f93e0"/>
+  <text x="435" y="84" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Invoice Mgmt</text>
   <rect x="426" y="94" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="426" y="94" width="3" height="20" fill="#6f93e0"/>
+  <text x="435" y="108" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Credit Mgmt</text>
 
   <!-- column 6 (Service) -->
   <rect x="530" y="42" width="94" height="24" rx="4" fill="#fff" stroke="#c8c8c2" stroke-width="1"/><rect x="530" y="42" width="3" height="24" fill="#9fb8ea"/>
   <text x="539" y="57" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Case Mgmt</text>
   <rect x="530" y="70" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="530" y="70" width="3" height="20" fill="#9fb8ea"/>
+  <text x="539" y="84" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Case Teaming</text>
   <rect x="530" y="94" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="530" y="94" width="3" height="20" fill="#9fb8ea"/>
+  <text x="539" y="108" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Self Service</text>
   <rect x="530" y="118" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="530" y="118" width="3" height="20" fill="#9fb8ea"/>
+  <text x="539" y="132" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Knowledge</text>
   <rect x="530" y="142" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="530" y="142" width="3" height="20" fill="#9fb8ea"/>
+  <text x="539" y="156" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Warranty Mgmt</text>
   <rect x="530" y="166" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="530" y="166" width="3" height="20" fill="#9fb8ea"/>
+  <text x="539" y="180" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Training</text>
 
   <rect x="10" y="200" width="614" height="1" fill="#ededea"/>
   <text x="10" y="222" font-family="JetBrains Mono, monospace" font-size="9" fill="#60605a">Each box is a Capability backed by structured data: a description, KPIs, and a maturity score.</text>
