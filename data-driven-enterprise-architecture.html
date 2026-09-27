@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Driven Enterprise Architecture — Tim Sent</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="favicon.ico" sizes="48x48" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<!-- ── Nav ──────────────────────────────────── -->
+<nav>
+  <div class="nav-inner wide">
+    <a href="index.html" class="nav-brand">tim<em>.</em>sent</a>
+    <ul class="nav-links">
+      <li><a href="#capabilities">Capabilities</a></li>
+      <li><a href="#capability-map">Capability Map</a></li>
+      <li><a href="#prioritization">Prioritization</a></li>
+      <li><a href="#roadmap">Roadmap</a></li>
+      <li><a href="#conclusion">Conclusion</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Hero ─────────────────────────────────── -->
+<div class="container wide">
+  <div class="hero fade">
+    <a href="index.html" class="back-link">← Back to portfolio</a>
+    <h1>Data Driven Enterprise Architecture</h1>
+    <p class="hero-kicker">On the Salesforce Platform</p>
+    <p class="hero-subtitle">Tim Sent · June 11, 2023</p>
+    <p class="hero-desc">
+      Architecture diagrams are beautiful, but they fail to capture the data needed to drive digital transformation.
+      I built <strong>Architect360</strong>, an application native to the Salesforce Platform, to blend rich structured
+      data with interactive diagrams, so Capability Maps, Prioritization Matrices, and Strategic Roadmaps carry real,
+      measurable metrics rather than static boxes. It's used by thousands of people across 35 countries.
+      <a href="https://medium.com/@timsent/data-driven-enterprise-architecture-on-the-salesforce-platform-efe32e9b1f5d" target="_blank" rel="noopener">Read the original post on Medium →</a>
+    </p>
+  </div>
+</div>
+
+<div class="hr"></div>
+
+<!-- ── Capabilities as Structured Data ──────── -->
+<section id="capabilities">
+  <div class="container wide">
+    <p class="sec-eyebrow fade">Capturing Artifact Metrics</p>
+    <h2 class="sec-title fade">Defining Capabilities as structured data</h2>
+    <div class="sec-body fade">
+      <p>Capabilities are central to any Enterprise Architecture practice, representing an organization's ability to achieve specific objectives and perform essential functions. They act as a shared language that encompasses the needs, resources, and activities of an organization. These Capabilities form the building blocks of various architectural diagrams, including Capability Maps, Prioritization Matrices, and Roadmaps.</p>
+      <p style="margin-top: 12px;">Traditionally, architecture artifacts like Capability Maps are created using diagramming tools or simple slides that lack the ability to capture and measure these metrics. Due to that same limitation, a Capability is often depicted as a simple box with a name, providing insufficient information to articulate its impact on the organization or guide decision-making.</p>
+      <p style="margin-top: 12px;">To tackle this, I leveraged the Salesforce Platform to model Capabilities as structured data rather than mere visualizations. The model begins with a clear description of a Capability's function, followed by a set of Key Performance Indicators (KPIs) to measure its performance, the technologies that enable it, and guidance on how to fully realize its maturity within the organization. Since Capabilities represent business needs at various levels of granularity, a hierarchical relationship is modeled between them: a broad Capability such as "Marketing &amp; Campaign Analytics" is further defined by more specific child Capabilities like "Audience Engagement Analytics."</p>
+    </div>
+
+    <div class="diagram-card fade">
+      <svg viewBox="0 0 460 320" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="10" width="440" height="300" rx="8" fill="#fff" stroke="#c8c8c2" stroke-width="1.2"/>
+
+        <!-- tabs -->
+        <text x="30" y="34" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600" fill="#1c5fdd">Card</text>
+        <line x1="30" y1="42" x2="66" y2="42" stroke="#1c5fdd" stroke-width="1.6"/>
+        <text x="90" y="34" font-family="JetBrains Mono, monospace" font-size="10" fill="#9a9a94">Outline</text>
+        <text x="150" y="34" font-family="JetBrains Mono, monospace" font-size="10" fill="#9a9a94">Initiatives</text>
+        <text x="222" y="34" font-family="JetBrains Mono, monospace" font-size="10" fill="#9a9a94">Solutions</text>
+        <line x1="10" y1="50" x2="450" y2="50" stroke="#ededea" stroke-width="1"/>
+
+        <!-- title + description -->
+        <text x="30" y="72" font-family="JetBrains Mono, monospace" font-size="12" font-weight="600" fill="#19191a">Marketing &amp; Campaign Analytics</text>
+        <rect x="30" y="82" width="400" height="6" rx="3" fill="#ededea"/>
+        <rect x="30" y="94" width="360" height="6" rx="3" fill="#ededea"/>
+        <rect x="30" y="106" width="300" height="6" rx="3" fill="#ededea"/>
+
+        <!-- child capabilities -->
+        <text x="30" y="136" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600" fill="#1c5fdd" letter-spacing="0.04em">CHILD CAPABILITIES</text>
+        <rect x="30" y="146" width="400" height="22" rx="5" fill="#edf2ff" stroke="#1c5fdd" stroke-width="1"/>
+        <text x="42" y="161" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#1c5fdd">Data Unification, Standardization</text>
+        <rect x="30" y="172" width="400" height="22" rx="5" fill="#edf2ff" stroke="#1c5fdd" stroke-width="1"/>
+        <text x="42" y="187" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#1c5fdd">Real-Time Campaign Delivery Analytics</text>
+        <rect x="30" y="198" width="400" height="22" rx="5" fill="#edf2ff" stroke="#1c5fdd" stroke-width="1"/>
+        <text x="42" y="213" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#1c5fdd">Audience Engagement Analytics</text>
+
+        <!-- KPIs -->
+        <text x="30" y="244" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600" fill="#788c5d" letter-spacing="0.04em">KEY PERFORMANCE INDICATORS</text>
+        <rect x="30" y="254" width="400" height="22" rx="5" fill="#eef2e8" stroke="#788c5d" stroke-width="1"/>
+        <text x="42" y="269" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#3d4a30">↑ Analytics &amp; Reporting Efficiency</text>
+        <rect x="30" y="280" width="400" height="22" rx="5" fill="#eef2e8" stroke="#788c5d" stroke-width="1"/>
+        <text x="42" y="295" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#3d4a30">↑ Campaign ROI</text>
+      </svg>
+    </div>
+    <p class="diagram-caption fade">Example Capability, shown as a Lightning Web Component: a description, its child Capabilities, and the KPIs that measure it.</p>
+
+    <div class="sec-body fade" style="margin-top: 16px;">
+      <p>With a defined model, it becomes possible to consistently capture the maturity of Capabilities and KPIs, measuring an organization's performance in fulfilling its business objectives as structured data. With structured data, thousands of data points across hundreds of Capabilities can be compared against industry benchmarks, or contrasted against adjacent industries the organization may aim to enter. Arguably, the most significant reason for capturing Capability metrics as structured data is to allow the comparison of the same measure over time.</p>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ── Capability Map ────────────────────────── -->
+<section id="capability-map">
+  <div class="container wide">
+    <p class="sec-eyebrow fade">Capability Analysis</p>
+    <h2 class="sec-title fade">Unveiling the power of organizational potential</h2>
+    <div class="sec-body fade">
+      <p>Capability Maps are crucial artifacts in Enterprise Architecture that illustrate an organization's functions, current performance, and areas for improvement. Jonathan Laudicina does an excellent job in his article on <a href="https://medium.com/@jlaudicina/business-model-to-capability-building-b504c0c89059" target="_blank" rel="noopener">"Business Model to Capability Building"</a> illustrating the value of this approach.</p>
+      <p style="margin-top: 12px;">Unlike many traditional diagramming tools that present Capability Maps as static boxes, Architect360 stores the visualization as structured data. This approach decomposes the stages of value creation for an organization, with each stage supported by multiple Capabilities. A common first stage in many organizations, for example, is "Awareness," which aims to generate interest, position the brand, and drive leads to the sales department.</p>
+      <p style="margin-top: 12px;">A distinct feature of Architect360 is its interactive builder, which uses a catalog of thousands of Capabilities. A Capability Map is constructed by dragging and dropping relevant Capabilities into the map, where specific values for each one can also be captured. Every Capability has a unique set of defined attributes, and those attributes, along with the entire Capability Map, reside in the same repository as structured data. Built on the <a href="https://www.lightningdesignsystem.com/" target="_blank" rel="noopener">Lightning Design System</a>, Architect360 provides a highly stylized and interactive visualization, so an Architect can create, analyze, and present a Capability Map in a single interface without navigating to other pages.</p>
+    </div>
+
+    <div class="diagram-card fade">
+      <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg">
+        <!-- column headers: chevrons, dark to light left to right -->
+        <polygon points="10,10 104,10 114,22 104,34 10,34" fill="#12386e"/>
+        <text x="57" y="26" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#fff">Marketing</text>
+        <polygon points="114,10 208,10 218,22 208,34 114,34 124,22" fill="#1c4f95"/>
+        <text x="161" y="26" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#fff">Sales</text>
+        <polygon points="218,10 312,10 322,22 312,34 218,34 228,22" fill="#1c5fdd"/>
+        <text x="265" y="26" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#fff">Product</text>
+        <polygon points="322,10 416,10 426,22 416,34 322,34 332,22" fill="#4a7fe8"/>
+        <text x="369" y="26" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#fff">Order</text>
+        <polygon points="426,10 520,10 530,22 520,34 426,34 436,22" fill="#85a8f0"/>
+        <text x="473" y="26" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#19191a">Billing</text>
+        <polygon points="530,10 624,10 634,22 624,34 530,34 540,22" fill="#c2d6f8"/>
+        <text x="577" y="26" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#19191a">Service</text>
+
+        <!-- capability rows: column 1 (Marketing) -->
+        <rect x="10" y="42" width="94" height="24" rx="4" fill="#fff" stroke="#c8c8c2" stroke-width="1"/><rect x="10" y="42" width="3" height="24" fill="#12386e"/>
+        <text x="19" y="57" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Campaign Mgmt</text>
+        <rect x="10" y="70" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="10" y="70" width="3" height="20" fill="#12386e"/>
+        <text x="19" y="84" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Lead Gen</text>
+        <rect x="10" y="94" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="10" y="94" width="3" height="20" fill="#12386e"/>
+        <text x="19" y="108" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Content Mgmt</text>
+        <rect x="10" y="118" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="10" y="118" width="3" height="20" fill="#12386e"/>
+        <text x="19" y="132" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Direct Mktg</text>
+
+        <!-- column 2 (Sales) -->
+        <rect x="114" y="42" width="94" height="24" rx="4" fill="#fff" stroke="#c8c8c2" stroke-width="1"/><rect x="114" y="42" width="3" height="24" fill="#1c4f95"/>
+        <text x="123" y="57" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Lead Mgmt</text>
+        <rect x="114" y="70" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="114" y="70" width="3" height="20" fill="#1c4f95"/>
+        <text x="123" y="84" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Account Mgmt</text>
+        <rect x="114" y="94" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="114" y="94" width="3" height="20" fill="#1c4f95"/>
+        <text x="123" y="108" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Contact Mgmt</text>
+
+        <!-- column 3 (Product) -->
+        <rect x="218" y="42" width="94" height="24" rx="4" fill="#fff" stroke="#c8c8c2" stroke-width="1"/><rect x="218" y="42" width="3" height="24" fill="#1c5fdd"/>
+        <text x="227" y="57" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Catalog Mgmt</text>
+        <rect x="218" y="70" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="218" y="70" width="3" height="20" fill="#1c5fdd"/>
+        <text x="227" y="84" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Proposal Mgmt</text>
+        <rect x="218" y="94" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="218" y="94" width="3" height="20" fill="#1c5fdd"/>
+        <text x="227" y="108" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Quote Mgmt</text>
+        <rect x="218" y="118" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="218" y="118" width="3" height="20" fill="#1c5fdd"/>
+        <text x="227" y="132" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Pricing Mgmt</text>
+        <rect x="218" y="142" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="218" y="142" width="3" height="20" fill="#1c5fdd"/>
+        <text x="227" y="156" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Subscriptions</text>
+
+        <!-- column 4 (Order) -->
+        <rect x="322" y="42" width="94" height="24" rx="4" fill="#fff" stroke="#c8c8c2" stroke-width="1"/><rect x="322" y="42" width="3" height="24" fill="#4a7fe8"/>
+        <text x="331" y="57" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Order Mgmt</text>
+        <rect x="322" y="70" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="322" y="70" width="3" height="20" fill="#4a7fe8"/>
+        <text x="331" y="84" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Order Capture</text>
+        <rect x="322" y="94" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="322" y="94" width="3" height="20" fill="#4a7fe8"/>
+        <text x="331" y="108" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Promotions</text>
+        <rect x="322" y="118" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="322" y="118" width="3" height="20" fill="#4a7fe8"/>
+        <text x="331" y="132" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Payments</text>
+        <rect x="322" y="142" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="322" y="142" width="3" height="20" fill="#4a7fe8"/>
+        <text x="331" y="156" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Inventory</text>
+        <rect x="322" y="166" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="322" y="166" width="3" height="20" fill="#4a7fe8"/>
+        <text x="331" y="180" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Tax Mgmt</text>
+
+        <!-- column 5 (Billing) -->
+        <rect x="426" y="42" width="94" height="24" rx="4" fill="#fff" stroke="#c8c8c2" stroke-width="1"/><rect x="426" y="42" width="3" height="24" fill="#6f93e0"/>
+        <text x="435" y="57" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Billing Mgmt</text>
+        <rect x="426" y="70" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="426" y="70" width="3" height="20" fill="#6f93e0"/>
+        <text x="435" y="84" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Invoice Mgmt</text>
+        <rect x="426" y="94" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="426" y="94" width="3" height="20" fill="#6f93e0"/>
+        <text x="435" y="108" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Credit Mgmt</text>
+
+        <!-- column 6 (Service) -->
+        <rect x="530" y="42" width="94" height="24" rx="4" fill="#fff" stroke="#c8c8c2" stroke-width="1"/><rect x="530" y="42" width="3" height="24" fill="#9fb8ea"/>
+        <text x="539" y="57" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Case Mgmt</text>
+        <rect x="530" y="70" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="530" y="70" width="3" height="20" fill="#9fb8ea"/>
+        <text x="539" y="84" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Case Teaming</text>
+        <rect x="530" y="94" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="530" y="94" width="3" height="20" fill="#9fb8ea"/>
+        <text x="539" y="108" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Self Service</text>
+        <rect x="530" y="118" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="530" y="118" width="3" height="20" fill="#9fb8ea"/>
+        <text x="539" y="132" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Knowledge</text>
+        <rect x="530" y="142" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="530" y="142" width="3" height="20" fill="#9fb8ea"/>
+        <text x="539" y="156" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Warranty Mgmt</text>
+        <rect x="530" y="166" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="530" y="166" width="3" height="20" fill="#9fb8ea"/>
+        <text x="539" y="180" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Training</text>
+
+        <rect x="10" y="200" width="614" height="1" fill="#ededea"/>
+        <text x="10" y="222" font-family="JetBrains Mono, monospace" font-size="9" fill="#60605a">Each box is a Capability backed by structured data: a description, KPIs, and a maturity score.</text>
+      </svg>
+    </div>
+    <p class="diagram-caption fade">A Capability Map for order management, decomposed into stages of value creation, each backed by structured Capability data rather than static boxes.</p>
+
+    <div class="sec-body fade" style="margin-top: 16px;">
+      <p>The blend of an interactive user experience, a comprehensive catalog of Capabilities, and the ability to capture business-specific metrics lets an Architect identify strengths, weaknesses, and gaps easily. By deriving insights from Capability Analysis, Architect360 aids in aligning business and IT strategies, helping organizations adapt, innovate, and thrive.</p>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ── Prioritization Matrix ─────────────────── -->
+<section id="prioritization">
+  <div class="container wide">
+    <p class="sec-eyebrow fade">Streamlining Decision Making</p>
+    <h2 class="sec-title fade">A Prioritization Matrix built on structured data</h2>
+    <div class="sec-body fade">
+      <p>Structured data on the Salesforce Platform can be put to work in a number of ways. One key artifact is a Prioritization Matrix, which helps an Architect pinpoint which Capabilities could have the most significant impact on the organization relative to their implementation complexity. This tool is invaluable for defining a Strategic Roadmap and for Tradeoff Analysis, a primary responsibility of an Architect, helping quickly identify opportunities for improvement while appreciating the complexity of each Capability.</p>
+    </div>
+
+    <div class="diagram-card fade">
+      <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg">
+        <!-- gridlines -->
+        <g stroke="#e3ebfa" stroke-width="1">
+          <line x1="50" y1="164" x2="370" y2="164"/>
+          <line x1="50" y1="128" x2="370" y2="128"/>
+          <line x1="50" y1="92" x2="370" y2="92"/>
+          <line x1="50" y1="56" x2="370" y2="56"/>
+          <line x1="50" y1="20" x2="370" y2="20"/>
+          <line x1="114" y1="20" x2="114" y2="200"/>
+          <line x1="178" y1="20" x2="178" y2="200"/>
+          <line x1="242" y1="20" x2="242" y2="200"/>
+          <line x1="306" y1="20" x2="306" y2="200"/>
+        </g>
+        <!-- sweet-spot highlight: high impact, low complexity -->
+        <ellipse cx="115" cy="55" rx="85" ry="55" fill="#1c5fdd" opacity="0.07"/>
+
+        <!-- axes -->
+        <line x1="50" y1="20" x2="50" y2="200" stroke="#c8c8c2" stroke-width="1.2"/>
+        <line x1="50" y1="200" x2="370" y2="200" stroke="#c8c8c2" stroke-width="1.2"/>
+        <text x="8" y="115" font-family="JetBrains Mono, monospace" font-size="9" fill="#60605a" transform="rotate(-90 8 115)">Impact</text>
+        <text x="210" y="222" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#60605a">Complexity</text>
+        <text x="50" y="212" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">Low</text>
+        <text x="370" y="212" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">High</text>
+        <text x="42" y="200" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">Low</text>
+        <text x="42" y="24" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">High</text>
+
+        <!-- capabilities, colored by maturity -->
+        <circle cx="140" cy="30" r="5.5" fill="#1c5fdd" opacity="0.7"/>
+        <circle cx="250" cy="40" r="7" fill="#788c5d" opacity="0.7"/>
+        <circle cx="90" cy="60" r="8" fill="#1c5fdd" opacity="0.7"/>
+        <circle cx="160" cy="50" r="9.5" fill="#788c5d" opacity="0.7"/>
+        <circle cx="230" cy="70" r="8" fill="#e8433d" opacity="0.7"/>
+        <circle cx="310" cy="60" r="8" fill="#1c5fdd" opacity="0.7"/>
+        <circle cx="130" cy="90" r="7" fill="#e8433d" opacity="0.7"/>
+        <circle cx="200" cy="110" r="7" fill="#1c5fdd" opacity="0.7"/>
+        <circle cx="300" cy="100" r="7" fill="#788c5d" opacity="0.7"/>
+        <circle cx="110" cy="140" r="7" fill="#e8433d" opacity="0.7"/>
+        <circle cx="180" cy="160" r="8" fill="#1c5fdd" opacity="0.7"/>
+        <circle cx="260" cy="130" r="5.5" fill="#788c5d" opacity="0.7"/>
+        <circle cx="80" cy="170" r="5.5" fill="#e8433d" opacity="0.7"/>
+        <circle cx="320" cy="150" r="5.5" fill="#e8433d" opacity="0.7"/>
+      </svg>
+    </div>
+    <p class="diagram-caption fade">Impact plotted against Complexity for each Capability, colored by maturity, built as a Lightning Web Component from the same structured data as the Capability Map.</p>
+
+    <div class="sec-body fade" style="margin-top: 16px;">
+      <p>Incorporating a Prioritization Matrix into the decision-making process equips an Architect with a valuable tool for navigating the complexity of business choices, driving overall success.</p>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ── Strategic Roadmap ─────────────────────── -->
+<section id="roadmap">
+  <div class="container wide">
+    <p class="sec-eyebrow fade">Strategic Roadmap</p>
+    <h2 class="sec-title fade">A roadmap rooted in structured data</h2>
+    <div class="sec-body fade">
+      <p>A Strategic Roadmap serves as a critical guide, aligning an organization's IT Capabilities with its strategic business objectives: a clear vision of where the organization wants to go, and the path to get there. For a deeper look at various types of roadmaps, see Marc Braga's <a href="https://medium.com/salesforce-architects/architects-guide-to-effective-roadmaps-fa8cbbb573e9" target="_blank" rel="noopener">"Architect's Guide to Effective Roadmaps"</a>.</p>
+      <p style="margin-top: 12px;">Building a roadmap is not a straightforward task; it takes a deep understanding, keen insight, and a broad perspective on an organization's Capabilities, potential, and future aspirations. It starts with understanding the current state of the organization and envisioning its desired future state, which is where the structured data in Architect360 comes into play: transforming Capabilities into structured data surfaces insights about an organization's current state and performance, and measures progress toward business transformation goals.</p>
+      <p style="margin-top: 12px;">With an understanding of current Capabilities and a clear vision of the future, an Architect can construct a roadmap grounded in that structured data analysis, identifying the initiatives needed to close the gap between the current and desired state. Here again the Prioritization Matrix proves invaluable, plotting Impact versus Complexity to identify where effort will have the most significant impact relative to its implementation complexity.</p>
+    </div>
+
+    <div class="diagram-card fade">
+      <svg viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg">
+        <!-- headers -->
+        <rect x="10" y="10" width="200" height="24" rx="4" fill="#1c5fdd"/>
+        <text x="110" y="26" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#fff">Immediate Term</text>
+        <rect x="220" y="10" width="200" height="24" rx="4" fill="#e8433d"/>
+        <text x="320" y="26" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#fff">Mid Term</text>
+        <rect x="430" y="10" width="200" height="24" rx="4" fill="#788c5d"/>
+        <text x="530" y="26" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#fff">Long Term</text>
+
+        <!-- column 1 rows -->
+        <g font-family="JetBrains Mono, monospace" font-size="8.5" fill="#19191a">
+          <rect x="10" y="42" width="200" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="10" y="42" width="3" height="20" fill="#1c5fdd"/>
+          <text x="19" y="56">Marketing &amp; Campaign Analytics</text>
+          <rect x="10" y="66" width="200" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="10" y="66" width="3" height="20" fill="#1c5fdd"/>
+          <text x="19" y="80">Lead Generation</text>
+          <rect x="10" y="90" width="200" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="10" y="90" width="3" height="20" fill="#1c5fdd"/>
+          <text x="19" y="104">Direct Marketing</text>
+          <rect x="10" y="114" width="200" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="10" y="114" width="3" height="20" fill="#1c5fdd"/>
+          <text x="19" y="128">Lead Mgmt</text>
+        </g>
+
+        <!-- column 2 rows -->
+        <g font-family="JetBrains Mono, monospace" font-size="8.5" fill="#19191a">
+          <rect x="220" y="42" width="200" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="220" y="42" width="3" height="20" fill="#e8433d"/>
+          <text x="229" y="56">Content Management</text>
+          <rect x="220" y="66" width="200" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="220" y="66" width="3" height="20" fill="#e8433d"/>
+          <text x="229" y="80">Preference &amp; Privacy Mgmt</text>
+          <rect x="220" y="90" width="200" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="220" y="90" width="3" height="20" fill="#e8433d"/>
+          <text x="229" y="104">Recommendations &amp; Experience</text>
+          <rect x="220" y="114" width="200" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="220" y="114" width="3" height="20" fill="#e8433d"/>
+          <text x="229" y="128">Partner Sales Management</text>
+        </g>
+
+        <!-- column 3 rows -->
+        <g font-family="JetBrains Mono, monospace" font-size="8.5" fill="#19191a">
+          <rect x="430" y="42" width="200" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="430" y="42" width="3" height="20" fill="#788c5d"/>
+          <text x="439" y="56">Credit &amp; Collections</text>
+          <rect x="430" y="66" width="200" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="430" y="66" width="3" height="20" fill="#788c5d"/>
+          <text x="439" y="80">Partner Recruitment &amp; Onboarding</text>
+          <rect x="430" y="90" width="200" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="430" y="90" width="3" height="20" fill="#788c5d"/>
+          <text x="439" y="104">Partner Development &amp; Growth</text>
+          <rect x="430" y="114" width="200" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="430" y="114" width="3" height="20" fill="#788c5d"/>
+          <text x="439" y="128">Joint Partner Marketing</text>
+        </g>
+
+        <line x1="10" y1="144" x2="630" y2="144" stroke="#ededea" stroke-width="1"/>
+        <text x="10" y="160" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600" fill="#60605a" letter-spacing="0.04em">SELECTED KEY PERFORMANCE INDICATORS</text>
+        <g font-family="JetBrains Mono, monospace" font-size="8.5" fill="#60605a">
+          <text x="10" y="178">↓ Marketing ROI</text>
+          <text x="10" y="194">↓ Lead Quality</text>
+          <text x="220" y="178">↓ Lead Scoring Rate</text>
+          <text x="220" y="194">↓ Case Resolution Time</text>
+          <text x="430" y="178">↓ Partner Management Cost</text>
+          <text x="430" y="194">↓ Partner Satisfaction</text>
+        </g>
+
+        <line x1="10" y1="206" x2="630" y2="206" stroke="#ededea" stroke-width="1"/>
+        <text x="10" y="222" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600" fill="#60605a" letter-spacing="0.04em">SELECTED PRODUCTS</text>
+        <g font-family="JetBrains Mono, monospace" font-size="8.5" fill="#60605a">
+          <text x="10" y="240">◆ Marketing Cloud</text>
+          <text x="220" y="240">◆ Content Management System</text>
+          <text x="430" y="240">◆ Revenue Cloud</text>
+        </g>
+      </svg>
+    </div>
+    <p class="diagram-caption fade">A Strategic Roadmap organized into Immediate, Mid, and Long Term, each column carrying the Capabilities, KPIs, and products behind it, another Lightning Web Component built on the same structured data.</p>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ── Conclusion ─────────────────────────────── -->
+<section id="conclusion">
+  <div class="container wide">
+    <p class="sec-eyebrow fade">Conclusion</p>
+    <h2 class="sec-title fade">Structured data drives the decision</h2>
+    <div class="sec-body fade">
+      <p>Structured data empowers Architects to make data driven decisions in service of an organization's business goals. Architect360 captures intricate details about an organization's Capabilities as structured data, improving analysis, decision making, and roadmap development. This approach enables a more granular understanding of an organization's current state, while illuminating the path forward toward its strategic objectives.</p>
+      <p style="margin-top: 12px;">Using structured data to create interactive, informative, and actionable artifacts, Capability Maps, Prioritization Matrices, and Strategic Roadmaps, equips Architects with a potent arsenal to drive digital transformation. It allows for the constant measurement, comparison, and tracking of Capabilities and performance metrics, which are indispensable in charting the journey toward business transformation goals.</p>
+    </div>
+    <div class="citation-block fade">
+      <p><a href="https://medium.com/@timsent/data-driven-enterprise-architecture-on-the-salesforce-platform-efe32e9b1f5d" target="_blank" rel="noopener" class="cite-link">Read the original post on Medium</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ────────────────────────────────── -->
+<footer>
+  <div class="footer-inner wide">
+    <a href="index.html" class="back-link" style="margin-bottom: 0;">← Back to portfolio</a>
+    <span class="footer-text">© 2026 Tim Sent</span>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }),
+    { threshold: 0.1, rootMargin: '0px 0px -24px 0px' }
+  );
+  document.querySelectorAll('.fade').forEach(el => io.observe(el));
+  const hero = document.querySelector('.hero.fade');
+  if (hero) requestAnimationFrame(() => hero.classList.add('in'));
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg">
+  <!-- column headers: chevrons, dark to light left to right -->
+  <polygon points="10,10 104,10 114,22 104,34 10,34" fill="#12386e"/>
+  <text x="57" y="26" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#fff">Marketing</text>
+  <polygon points="114,10 208,10 218,22 208,34 114,34 124,22" fill="#1c4f95"/>
+  <text x="161" y="26" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#fff">Sales</text>
+  <polygon points="218,10 312,10 322,22 312,34 218,34 228,22" fill="#1c5fdd"/>
+  <text x="265" y="26" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#fff">Product</text>
+  <polygon points="322,10 416,10 426,22 416,34 322,34 332,22" fill="#4a7fe8"/>
+  <text x="369" y="26" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#fff">Order</text>
+  <polygon points="426,10 520,10 530,22 520,34 426,34 436,22" fill="#85a8f0"/>
+  <text x="473" y="26" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#19191a">Billing</text>
+  <polygon points="530,10 624,10 634,22 624,34 530,34 540,22" fill="#c2d6f8"/>
+  <text x="577" y="26" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#19191a">Service</text>
+
+  <!-- capability rows: column 1 (Marketing) -->
+  <rect x="10" y="42" width="94" height="24" rx="4" fill="#fff" stroke="#c8c8c2" stroke-width="1"/><rect x="10" y="42" width="3" height="24" fill="#12386e"/>
+  <text x="19" y="57" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Campaign Mgmt</text>
+  <rect x="10" y="70" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="10" y="70" width="3" height="20" fill="#12386e"/>
+  <rect x="10" y="94" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="10" y="94" width="3" height="20" fill="#12386e"/>
+  <rect x="10" y="118" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="10" y="118" width="3" height="20" fill="#12386e"/>
+
+  <!-- column 2 (Sales) -->
+  <rect x="114" y="42" width="94" height="24" rx="4" fill="#fff" stroke="#c8c8c2" stroke-width="1"/><rect x="114" y="42" width="3" height="24" fill="#1c4f95"/>
+  <text x="123" y="57" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Lead Mgmt</text>
+  <rect x="114" y="70" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="114" y="70" width="3" height="20" fill="#1c4f95"/>
+  <rect x="114" y="94" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="114" y="94" width="3" height="20" fill="#1c4f95"/>
+
+  <!-- column 3 (Product) -->
+  <rect x="218" y="42" width="94" height="24" rx="4" fill="#fff" stroke="#c8c8c2" stroke-width="1"/><rect x="218" y="42" width="3" height="24" fill="#1c5fdd"/>
+  <text x="227" y="57" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Catalog Mgmt</text>
+  <rect x="218" y="70" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="218" y="70" width="3" height="20" fill="#1c5fdd"/>
+  <rect x="218" y="94" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="218" y="94" width="3" height="20" fill="#1c5fdd"/>
+  <rect x="218" y="118" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="218" y="118" width="3" height="20" fill="#1c5fdd"/>
+  <rect x="218" y="142" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="218" y="142" width="3" height="20" fill="#1c5fdd"/>
+
+  <!-- column 4 (Order) -->
+  <rect x="322" y="42" width="94" height="24" rx="4" fill="#fff" stroke="#c8c8c2" stroke-width="1"/><rect x="322" y="42" width="3" height="24" fill="#4a7fe8"/>
+  <text x="331" y="57" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Order Mgmt</text>
+  <rect x="322" y="70" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="322" y="70" width="3" height="20" fill="#4a7fe8"/>
+  <rect x="322" y="94" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="322" y="94" width="3" height="20" fill="#4a7fe8"/>
+  <rect x="322" y="118" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="322" y="118" width="3" height="20" fill="#4a7fe8"/>
+  <rect x="322" y="142" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="322" y="142" width="3" height="20" fill="#4a7fe8"/>
+  <rect x="322" y="166" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="322" y="166" width="3" height="20" fill="#4a7fe8"/>
+
+  <!-- column 5 (Billing) -->
+  <rect x="426" y="42" width="94" height="24" rx="4" fill="#fff" stroke="#c8c8c2" stroke-width="1"/><rect x="426" y="42" width="3" height="24" fill="#6f93e0"/>
+  <text x="435" y="57" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Billing Mgmt</text>
+  <rect x="426" y="70" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="426" y="70" width="3" height="20" fill="#6f93e0"/>
+  <rect x="426" y="94" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="426" y="94" width="3" height="20" fill="#6f93e0"/>
+
+  <!-- column 6 (Service) -->
+  <rect x="530" y="42" width="94" height="24" rx="4" fill="#fff" stroke="#c8c8c2" stroke-width="1"/><rect x="530" y="42" width="3" height="24" fill="#9fb8ea"/>
+  <text x="539" y="57" font-family="JetBrains Mono, monospace" font-size="8" fill="#19191a">Case Mgmt</text>
+  <rect x="530" y="70" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="530" y="70" width="3" height="20" fill="#9fb8ea"/>
+  <rect x="530" y="94" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="530" y="94" width="3" height="20" fill="#9fb8ea"/>
+  <rect x="530" y="118" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="530" y="118" width="3" height="20" fill="#9fb8ea"/>
+  <rect x="530" y="142" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="530" y="142" width="3" height="20" fill="#9fb8ea"/>
+  <rect x="530" y="166" width="94" height="20" rx="4" fill="#fff" stroke="#e4e4e0" stroke-width="1"/><rect x="530" y="166" width="3" height="20" fill="#9fb8ea"/>
+
+  <rect x="10" y="200" width="614" height="1" fill="#ededea"/>
+  <text x="10" y="222" font-family="JetBrains Mono, monospace" font-size="9" fill="#60605a">Each box is a Capability backed by structured data: a description, KPIs, and a maturity score.</text>
+</svg>
