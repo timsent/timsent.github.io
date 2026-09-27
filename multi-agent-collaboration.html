@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi-Agent Collaboration — Tim Sent</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="favicon.ico" sizes="48x48" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<!-- ── Nav ──────────────────────────────────── -->
+<nav>
+  <div class="nav-inner wide">
+    <a href="index.html" class="nav-brand">tim<em>.</em>sent</a>
+    <ul class="nav-links">
+      <li><a href="#timeline">Timeline</a></li>
+      <li><a href="#tool-calling">Tool Calling</a></li>
+      <li><a href="#frameworks">Frameworks</a></li>
+      <li><a href="#mcp">MCP</a></li>
+      <li><a href="#a2a">A2A</a></li>
+      <li><a href="#comparison">MCP vs. A2A</a></li>
+      <li><a href="#resources">Resources</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Hero ─────────────────────────────────── -->
+<div class="container wide">
+  <div class="hero fade">
+    <a href="index.html" class="back-link">← Back to portfolio</a>
+    <h1>Multi-Agent Collaboration</h1>
+    <p class="hero-kicker">Building towards our multi-agentic future</p>
+    <p class="hero-subtitle">Tim Sent · Director, Architecture · September 2026</p>
+    <p class="hero-desc">
+      The path from function calling to Agent2Agent, in the order the field actually built it: OpenAI's tool calling,
+      LangChain's standardized interface, Mixture of Agents and the multi-agent frameworks that followed, Anthropic's
+      Model Context Protocol, and Google's Agent2Agent Protocol. The goal is to explain the innovations that led to A2A,
+      and how MCP and A2A work together rather than in competition.
+    </p>
+  </div>
+</div>
+
+<div class="hr"></div>
+
+<!-- ── Overview ─────────────────────────────── -->
+<section id="overview">
+  <div class="container wide">
+    <p class="sec-eyebrow fade">Overview</p>
+    <h2 class="sec-title fade">Four innovations, one direction</h2>
+    <div class="card-grid cols-4 fade">
+      <div class="card"><h3>Tool Calling</h3><p>How OpenAI gave language models a way to take action, and how LangChain standardized it across providers.</p></div>
+      <div class="card"><h3>Multi-Agent Frameworks</h3><p>Mixture of Agents and the frameworks, LangGraph, CrewAI, MetaGPT, AutoGen, that let multiple agents collaborate.</p></div>
+      <div class="card"><h3>Model Context Protocol</h3><p>Anthropic's open standard for how a model reaches tools, resources, and prompts.</p></div>
+      <div class="card"><h3>Agent2Agent Protocol</h3><p>Google's open standard for how independent agents discover each other and collaborate as peers.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ── Timeline ─────────────────────────────── -->
+<section id="timeline">
+  <div class="container wide">
+    <p class="sec-eyebrow fade">Agenda, in Reverse Order</p>
+    <h2 class="sec-title fade">The road to Agent2Agent</h2>
+    <div class="sec-body fade">
+      <p>Read in reverse chronological order, this mirrors the key developments that led to A2A: each innovation solved a limit the one before it ran into.</p>
+    </div>
+    <div class="timeline-v2 fade">
+      <div class="tl-item"><p class="tl-year">June 2023</p><p class="tl-title">Tool Calling (Function Calling)</p><p class="tl-desc">OpenAI introduces tool calling with GPT-3.5-turbo and GPT-4, giving models a structured way to invoke external functions.</p></div>
+      <div class="tl-item"><p class="tl-year">July 2023</p><p class="tl-title">NANDA</p><p class="tl-desc">MIT Media Lab begins work on the Networked Agents and Decentralized AI project, exploring agent-to-agent interoperability at scale.</p></div>
+      <div class="tl-item"><p class="tl-year">April 2024</p><p class="tl-title">LangChain Standardized Tool Calling</p><p class="tl-desc">A consistent interface for binding tools to any model that supports tool calling, so a tool can be defined once and used across providers.</p></div>
+      <div class="tl-item"><p class="tl-year">June 2024</p><p class="tl-title">Mixture of Agents (MoA)</p><p class="tl-desc">Stanford, Duke, and the University of Chicago describe a layered architecture where proposer and aggregator models collaborate to improve a response.</p></div>
+      <div class="tl-item"><p class="tl-year">June 2024</p><p class="tl-title">Other Multi-Agent Frameworks</p><p class="tl-desc">LangGraph, CrewAI, MetaGPT, and AutoGen mature into distinct approaches for orchestrating multiple agents.</p></div>
+      <div class="tl-item"><p class="tl-year">November 2024</p><p class="tl-title">Model Context Protocol (MCP)</p><p class="tl-desc">Anthropic introduces an open standard for how models access tools, resources, and prompts, later described as the USB-C of AI apps.</p></div>
+      <div class="tl-item"><p class="tl-year">March 2025</p><p class="tl-title">Building the Internet of Agents: AGNTCY.org</p><p class="tl-desc">An open collective forms around shared infrastructure for agent discovery, identity, and interoperability across vendors.</p></div>
+      <div class="tl-item"><p class="tl-year">April 2025</p><p class="tl-title">Agent2Agent Protocol (A2A)</p><p class="tl-desc">Google introduces an open standard for communication between independent agents built on different frameworks and by different vendors.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ── Tool Calling ─────────────────────────── -->
+<section id="tool-calling">
+  <div class="container wide">
+    <p class="sec-eyebrow fade">From Text to Action</p>
+    <h2 class="sec-title fade">Tool calling gave LLMs a way to act</h2>
+    <div class="sec-body fade">
+      <p>Before tool calling, a large language model could only generate text drawn from its training data. Asked to book a flight, it could describe how to do so, but it had no way to check real availability, no way to take action, and no way to look anything up externally.</p>
+    </div>
+    <div class="two-col fade">
+      <div>
+        <h3 class="subsection-title">Before Tool Calling</h3>
+        <p class="sec-body">A model could understand intent and simulate a plausible answer, but it could not access real-time data, interact with a booking system, or confirm anything against the outside world. Every answer was a guess dressed up as an explanation.</p>
+      </div>
+      <div>
+        <h3 class="subsection-title">After Tool Calling</h3>
+        <p class="sec-body">OpenAI introduced tool calling in June 2023 with GPT-3.5-turbo and GPT-4. Developers define tools by name, description, and a JSON schema for their arguments; the model decides when a request matches a tool, and outputs a structured call for the application to execute.</p>
+      </div>
+    </div>
+
+    <div class="subsection fade">
+      <h3 class="subsection-title">The get_weather example</h3>
+      <p class="sec-body">A user asks "What's the weather like in Paris today?" The application and the model exchange five messages to answer it:</p>
+      <ol style="padding-left: 18px; font-size: 13.5px; color: var(--text-secondary); line-height: 1.7; margin-top: 8px;">
+        <li>The application sends the user's message to the model, along with a definition of the available functions.</li>
+        <li>The model decides to invoke <code style="font-family: var(--mono); font-size: 12.5px;">get_weather</code> with the appropriate arguments.</li>
+        <li>The application parses the call and executes the function, requesting the current weather for Paris from an external API.</li>
+        <li>The weather API responds, and the application formats the result as a message from the tool.</li>
+        <li>The application sends that result back to the model, which crafts a final, user-friendly response.</li>
+      </ol>
+    </div>
+
+    <div class="diagram-card fade">
+      <svg viewBox="0 0 640 460" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrowSeq" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="#9a9a94" />
+          </marker>
+        </defs>
+
+        <!-- lifeline headers -->
+        <rect x="60" y="10" width="160" height="30" rx="6" fill="#fff" stroke="#c8c8c2" stroke-width="1.2"/>
+        <text x="140" y="30" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#19191a">Application</text>
+        <rect x="420" y="10" width="160" height="30" rx="6" fill="#fff" stroke="#c8c8c2" stroke-width="1.2"/>
+        <text x="500" y="30" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#19191a">Model (LLM)</text>
+        <line x1="140" y1="40" x2="140" y2="430" stroke="#c8c8c2" stroke-width="1.2"/>
+        <line x1="500" y1="40" x2="500" y2="430" stroke="#c8c8c2" stroke-width="1.2"/>
+
+        <!-- 1: Tool Definition + Message (Application -> Model) -->
+        <circle cx="140" cy="66" r="9" fill="#1c5fdd"/>
+        <text x="140" y="70" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#fff">1</text>
+        <rect x="185" y="56" width="270" height="44" rx="6" fill="#edf2ff" stroke="#1c5fdd" stroke-width="1.2"/>
+        <text x="320" y="72" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#1c5fdd">get_weather(location)</text>
+        <text x="320" y="88" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#60605a">"What is the weather in Paris today?"</text>
+        <line x1="160" y1="78" x2="496" y2="78" stroke="#9a9a94" stroke-width="1.3" marker-end="url(#arrowSeq)"/>
+
+        <!-- 2: Tool Calls (Model -> Application) -->
+        <circle cx="500" cy="126" r="9" fill="#1c5fdd"/>
+        <text x="500" y="130" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#fff">2</text>
+        <rect x="185" y="116" width="270" height="34" rx="6" fill="#edf2ff" stroke="#1c5fdd" stroke-width="1.2"/>
+        <text x="320" y="137" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#1c5fdd">Tool Calls: get_weather("Paris")</text>
+        <line x1="480" y1="138" x2="144" y2="138" stroke="#9a9a94" stroke-width="1.3" marker-end="url(#arrowSeq)"/>
+
+        <!-- 3: Execute Function Call (self-call on Application) -->
+        <circle cx="140" cy="186" r="9" fill="#1c5fdd"/>
+        <text x="140" y="190" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#fff">3</text>
+        <rect x="60" y="200" width="220" height="60" rx="6" fill="#fff" stroke="#c8c8c2" stroke-width="1.2"/>
+        <text x="170" y="220" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#19191a">Execute Function Call</text>
+        <text x="170" y="236" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#60605a">get_weather("Paris")</text>
+        <text x="170" y="250" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#60605a">{"temperature": 14}</text>
+        <path d="M140,190 C 40,190 40,210 90,210" fill="none" stroke="#9a9a94" stroke-width="1.3" marker-end="url(#arrowSeq)"/>
+
+        <!-- 4: Results (Application -> Model) -->
+        <circle cx="140" cy="296" r="9" fill="#1c5fdd"/>
+        <text x="140" y="300" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#fff">4</text>
+        <rect x="185" y="286" width="270" height="44" rx="6" fill="#edf2ff" stroke="#1c5fdd" stroke-width="1.2"/>
+        <text x="320" y="302" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#1c5fdd">Results: All Prior Messages</text>
+        <text x="320" y="318" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#60605a">{"temperature": 18}</text>
+        <line x1="160" y1="308" x2="496" y2="308" stroke="#9a9a94" stroke-width="1.3" marker-end="url(#arrowSeq)"/>
+
+        <!-- 5: Final Response (Model -> Application) -->
+        <circle cx="500" cy="366" r="9" fill="#1c5fdd"/>
+        <text x="500" y="370" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#fff">5</text>
+        <rect x="185" y="356" width="270" height="34" rx="6" fill="#edf2ff" stroke="#1c5fdd" stroke-width="1.2"/>
+        <text x="320" y="377" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#1c5fdd">Final Response: "Currently in Paris it's 18°C"</text>
+        <line x1="480" y1="378" x2="144" y2="378" stroke="#9a9a94" stroke-width="1.3" marker-end="url(#arrowSeq)"/>
+
+        <!-- lifeline footers -->
+        <rect x="60" y="400" width="160" height="30" rx="6" fill="#fff" stroke="#c8c8c2" stroke-width="1.2"/>
+        <text x="140" y="420" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#19191a">Application</text>
+        <rect x="420" y="400" width="160" height="30" rx="6" fill="#fff" stroke="#c8c8c2" stroke-width="1.2"/>
+        <text x="500" y="420" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#19191a">Model (LLM)</text>
+      </svg>
+    </div>
+    <p class="diagram-caption fade">The tool calling sequence for a single request: the application defines the tool and forwards the message, the model calls the tool, the application executes it and returns the result, and the model turns that result into a final response.</p>
+
+    <div class="subsection fade">
+      <h3 class="subsection-title">Standardizing tool calling</h3>
+      <p class="sec-body">Between June 2023 and September 2024, OpenAI, Anthropic, Google DeepMind, Cohere, and Meta all introduced tool calling into their models, each with its own interface. What was missing was a standard. LangChain closed that gap in April 2024 with a consistent interface for binding tools to any model that supports tool calling, defined once with a name, a description, and a JSON schema, and reused across providers.</p>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ── Multi-Agent Frameworks ───────────────── -->
+<section id="frameworks">
+  <div class="container wide">
+    <p class="sec-eyebrow fade">Multi-Agent Frameworks</p>
+    <h2 class="sec-title fade">From one tool call to many agents</h2>
+    <div class="sec-body fade">
+      <p>Mixture of Experts activates only the most relevant parts of a single large model for a given input, keeping inference cost down as model scale grows. Mixture of Agents applies that same idea across whole models: proposer agents generate candidate responses, and aggregator agents review and refine them into a single, higher quality answer, without any additional training.</p>
+    </div>
+
+    <div class="subsection fade">
+      <h3 class="subsection-title">Mixture of Experts (MoE)</h3>
+      <p class="sec-body">Mixture of Experts is a neural network architecture that improves the efficiency and scalability of large neural networks by activating only a subset of the model's components, called experts, for each input. Instead of activating the entire model, only the most relevant experts are used, which reduces computation while maintaining or improving performance, and lets a model scale to billions or trillions of parameters without a linear increase in inference cost.</p>
+
+      <div class="diagram-card">
+        <svg viewBox="0 0 460 250" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrowMoE" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 Z" fill="#9a9a94" />
+            </marker>
+          </defs>
+
+          <text x="190" y="14" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#60605a">Y₁</text>
+          <text x="270" y="14" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#60605a">Y₂</text>
+          <line x1="190" y1="32" x2="190" y2="20" stroke="#9a9a94" stroke-width="1.2" marker-end="url(#arrowMoE)"/>
+          <line x1="270" y1="32" x2="270" y2="20" stroke="#9a9a94" stroke-width="1.2" marker-end="url(#arrowMoE)"/>
+
+          <rect x="60" y="34" width="340" height="28" rx="6" fill="#fff" stroke="#c8c8c2" stroke-width="1.2"/>
+          <text x="230" y="52" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#19191a">Add &amp; Normalize</text>
+          <line x1="190" y1="90" x2="190" y2="64" stroke="#1c5fdd" stroke-width="1.4" marker-end="url(#arrowMoE)"/>
+
+          <!-- FFN experts: only FFN2 is active for this input -->
+          <rect x="35" y="90" width="90" height="34" rx="6" fill="#fff" stroke="#c8c8c2" stroke-width="1.1" stroke-dasharray="3,3" opacity="0.7"/>
+          <text x="80" y="111" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#9a9a94">FFN1</text>
+          <rect x="145" y="90" width="90" height="34" rx="6" fill="#edf2ff" stroke="#1c5fdd" stroke-width="1.4"/>
+          <text x="190" y="111" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#1c5fdd">FFN2</text>
+          <rect x="255" y="90" width="90" height="34" rx="6" fill="#fff" stroke="#c8c8c2" stroke-width="1.1" stroke-dasharray="3,3" opacity="0.7"/>
+          <text x="300" y="111" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#9a9a94">FFN3</text>
+          <rect x="365" y="90" width="90" height="34" rx="6" fill="#fff" stroke="#c8c8c2" stroke-width="1.1" stroke-dasharray="3,3" opacity="0.7"/>
+          <text x="410" y="111" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#9a9a94">FFN4</text>
+
+          <!-- gating weight bars -->
+          <text x="190" y="132" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#1c5fdd">p=0.76</text>
+          <rect x="73" y="158" width="14" height="8" fill="#c8c8c2"/>
+          <rect x="183" y="138" width="14" height="28" fill="#1c5fdd"/>
+          <rect x="293" y="154" width="14" height="12" fill="#c8c8c2"/>
+          <rect x="403" y="160" width="14" height="6" fill="#c8c8c2"/>
+          <line x1="80" y1="158" x2="80" y2="124" stroke="#c8c8c2" stroke-width="0.9"/>
+          <line x1="190" y1="138" x2="190" y2="124" stroke="#1c5fdd" stroke-width="1.1"/>
+          <line x1="300" y1="154" x2="300" y2="124" stroke="#c8c8c2" stroke-width="0.9"/>
+          <line x1="410" y1="160" x2="410" y2="124" stroke="#c8c8c2" stroke-width="0.9"/>
+
+          <rect x="170" y="170" width="120" height="32" rx="6" fill="#edf2ff" stroke="#1c5fdd" stroke-width="1.2"/>
+          <text x="230" y="190" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#1c5fdd">Gate</text>
+
+          <text x="200" y="235" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#60605a">X₁</text>
+          <text x="260" y="235" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#60605a">X₂</text>
+          <line x1="200" y1="220" x2="200" y2="204" stroke="#9a9a94" stroke-width="1.2" marker-end="url(#arrowMoE)"/>
+          <line x1="260" y1="220" x2="260" y2="204" stroke="#9a9a94" stroke-width="1.2" marker-end="url(#arrowMoE)"/>
+        </svg>
+      </div>
+      <p class="diagram-caption">Sparse Mixture of Experts with Top-1 gating: a small gate network scores every expert for the input, and only the highest scoring expert, FFN2 here at p=0.76, actually processes it. The other three stay idle for this input, which is what keeps inference cost from growing with the number of experts.</p>
+      <p class="sec-body" style="margin-top: 14px;">The sparse activation encourages expert specialization, so the network handles diverse tasks more effectively, and separating training-time compute from inference-time compute lets large models run efficiently in deployment without losing their capacity to learn complex patterns. A 2025 survey catalogs five further ways to route inputs to experts: BASE Layers, domain mapping with random gating, expert-choice gating, attention routing, and soft MoE, which merges experts instead of selecting one.</p>
+      <div class="citation-block">
+        <p><a href="https://arxiv.org/abs/2407.06204" target="_blank" rel="noopener" class="cite-link">A Survey on Mixture of Experts in Large Language Models — arXiv:2407.06204</a></p>
+      </div>
+    </div>
+
+    <div class="subsection fade">
+      <h3 class="subsection-title">Mixture of Agents (MoA)</h3>
+      <p class="sec-body">Mixture of Agents, described in Wang et al.'s "Mixture-of-Agents Enhances Large Language Model Capabilities," applies the same idea across whole models rather than components within one. It is built as a layered system, where each layer holds several Proposer and Aggregator agents, and each layer takes the output from the previous one and improves upon it.</p>
+
+      <div class="diagram-card">
+        <svg viewBox="0 0 740 260" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrowMoA" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 Z" fill="#9a9a94" />
+            </marker>
+          </defs>
+
+          <!-- Prompt -> Layer 1 -->
+          <line x1="60" y1="50" x2="100" y2="125" stroke="#e4e4e0" stroke-width="0.8"/>
+          <line x1="60" y1="125" x2="100" y2="125" stroke="#e4e4e0" stroke-width="0.8"/>
+          <line x1="60" y1="200" x2="100" y2="125" stroke="#e4e4e0" stroke-width="0.8"/>
+          <!-- Layer 1 -> Layer 2 -->
+          <line x1="180" y1="50" x2="270" y2="50" stroke="#e4e4e0" stroke-width="0.7"/>
+          <line x1="180" y1="50" x2="270" y2="125" stroke="#e4e4e0" stroke-width="0.7"/>
+          <line x1="180" y1="50" x2="270" y2="200" stroke="#e4e4e0" stroke-width="0.7"/>
+          <line x1="180" y1="125" x2="270" y2="50" stroke="#e4e4e0" stroke-width="0.7"/>
+          <line x1="180" y1="125" x2="270" y2="125" stroke="#e4e4e0" stroke-width="0.7"/>
+          <line x1="180" y1="125" x2="270" y2="200" stroke="#e4e4e0" stroke-width="0.7"/>
+          <line x1="180" y1="200" x2="270" y2="50" stroke="#e4e4e0" stroke-width="0.7"/>
+          <line x1="180" y1="200" x2="270" y2="125" stroke="#e4e4e0" stroke-width="0.7"/>
+          <line x1="180" y1="200" x2="270" y2="200" stroke="#e4e4e0" stroke-width="0.7"/>
+          <!-- Layer 2 -> Layer 3 -->
+          <line x1="350" y1="50" x2="440" y2="50" stroke="#e4e4e0" stroke-width="0.7"/>
+          <line x1="350" y1="50" x2="440" y2="125" stroke="#e4e4e0" stroke-width="0.7"/>
+          <line x1="350" y1="50" x2="440" y2="200" stroke="#e4e4e0" stroke-width="0.7"/>
+          <line x1="350" y1="125" x2="440" y2="50" stroke="#e4e4e0" stroke-width="0.7"/>
+          <line x1="350" y1="125" x2="440" y2="125" stroke="#e4e4e0" stroke-width="0.7"/>
+          <line x1="350" y1="125" x2="440" y2="200" stroke="#e4e4e0" stroke-width="0.7"/>
+          <line x1="350" y1="200" x2="440" y2="50" stroke="#e4e4e0" stroke-width="0.7"/>
+          <line x1="350" y1="200" x2="440" y2="125" stroke="#e4e4e0" stroke-width="0.7"/>
+          <line x1="350" y1="200" x2="440" y2="200" stroke="#e4e4e0" stroke-width="0.7"/>
+          <!-- Layer 3 -> Layer 4 -->
+          <line x1="520" y1="50" x2="600" y2="125" stroke="#e4e4e0" stroke-width="0.8"/>
+          <line x1="520" y1="125" x2="600" y2="125" stroke="#e4e4e0" stroke-width="0.8"/>
+          <line x1="520" y1="200" x2="600" y2="125" stroke="#e4e4e0" stroke-width="0.8"/>
+          <!-- Layer 4 -> Final Output -->
+          <line x1="670" y1="125" x2="688" y2="125" stroke="#9a9a94" stroke-width="1.3" marker-end="url(#arrowMoA)"/>
+
+          <!-- Layer 1 agents -->
+          <rect x="100" y="34" width="80" height="32" rx="6" fill="#edf2ff" stroke="#1c5fdd" stroke-width="1.2"/>
+          <text x="140" y="55" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#1c5fdd">A₁,₁</text>
+          <rect x="100" y="109" width="80" height="32" rx="6" fill="#fdecec" stroke="#e8433d" stroke-width="1.2"/>
+          <text x="140" y="130" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#e8433d">A₁,₂</text>
+          <rect x="100" y="184" width="80" height="32" rx="6" fill="#eef2e8" stroke="#788c5d" stroke-width="1.2"/>
+          <text x="140" y="205" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#788c5d">A₁,₃</text>
+
+          <!-- Layer 2 agents -->
+          <rect x="270" y="34" width="80" height="32" rx="6" fill="#edf2ff" stroke="#1c5fdd" stroke-width="1.2"/>
+          <text x="310" y="55" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#1c5fdd">A₂,₁</text>
+          <rect x="270" y="109" width="80" height="32" rx="6" fill="#fdecec" stroke="#e8433d" stroke-width="1.2"/>
+          <text x="310" y="130" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#e8433d">A₂,₂</text>
+          <rect x="270" y="184" width="80" height="32" rx="6" fill="#eef2e8" stroke="#788c5d" stroke-width="1.2"/>
+          <text x="310" y="205" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#788c5d">A₂,₃</text>
+
+          <!-- Layer 3 agents -->
+          <rect x="440" y="34" width="80" height="32" rx="6" fill="#edf2ff" stroke="#1c5fdd" stroke-width="1.2"/>
+          <text x="480" y="55" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#1c5fdd">A₃,₁</text>
+          <rect x="440" y="109" width="80" height="32" rx="6" fill="#fdecec" stroke="#e8433d" stroke-width="1.2"/>
+          <text x="480" y="130" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#e8433d">A₃,₂</text>
+          <rect x="440" y="184" width="80" height="32" rx="6" fill="#eef2e8" stroke="#788c5d" stroke-width="1.2"/>
+          <text x="480" y="205" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#788c5d">A₃,₃</text>
+
+          <!-- Layer 4: single aggregator -->
+          <rect x="600" y="100" width="70" height="50" rx="6" fill="#fff" stroke="#19191a" stroke-width="1.3"/>
+          <text x="635" y="121" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#19191a">A₄,₁</text>
+          <text x="635" y="136" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#60605a">Aggregator</text>
+
+          <text x="15" y="129" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#60605a">Prompt</text>
+          <text x="732" y="118" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#60605a">Final</text>
+          <text x="732" y="132" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#60605a">Output</text>
+
+          <text x="140" y="235" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#9a9a94">Layer 1</text>
+          <text x="310" y="235" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#9a9a94">Layer 2</text>
+          <text x="480" y="235" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#9a9a94">Layer 3</text>
+          <text x="635" y="235" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#9a9a94">Layer 4</text>
+        </svg>
+      </div>
+      <p class="diagram-caption">Each layer's agents take every prior layer's output as input. Proposers generate candidate responses; aggregators review those candidates and produce a refined response, potentially combining or rephrasing them, until the final layer's single aggregator produces the answer.</p>
+      <p class="sec-body" style="margin-top: 14px;">This architecture encourages modular composition: agents can be heterogeneous, different model sizes or architectures, and configured dynamically. It improves language model performance through structured collaboration between specialized agents, offering better quality, flexibility, and efficiency without additional training.</p>
+      <div class="citation-block">
+        <p><a href="https://arxiv.org/abs/2406.04692" target="_blank" rel="noopener" class="cite-link">Mixture-of-Agents Enhances Large Language Model Capabilities — arXiv:2406.04692</a></p>
+      </div>
+    </div>
+
+    <div class="subsection fade">
+      <h3 class="subsection-title">Other multi-agent frameworks</h3>
+      <p class="sec-body">LangChain and LangGraph have evolved to better support multi-agent systems, while CrewAI and MetaGPT build around the roles each agent takes on in the network.</p>
+    </div>
+
+    <div class="table-wrap short fade">
+      <table class="data-table">
+        <thead><tr><th>Framework</th><th>Multi-Agent Capability</th><th>Best For</th></tr></thead>
+        <tbody>
+          <tr><td>LangChain</td><td>Agent tool use, memory, and control logic via Runnable interfaces</td><td>Modular LLM pipelines integrating tools and structured workflows</td></tr>
+          <tr><td>LangGraph</td><td>Explicit agent communication and control flow as a directed state graph</td><td>Structured multi-agent loops and complex agent interaction flows</td></tr>
+          <tr><td>CrewAI</td><td>Human-like roles, researcher, writer, reviewer, operating collaboratively</td><td>Document generation and simulated team collaboration</td></tr>
+          <tr><td>MetaGPT</td><td>A simulated team of agents, PM, engineer, designer, producing software artifacts</td><td>Generating and managing full-stack applications</td></tr>
+          <tr><td>AutoGen</td><td>Autonomous, asynchronous dialogue between agents</td><td>Dynamic, self-directed collaboration with minimal human prompting</td></tr>
+          <tr><td>ReAct</td><td>A thought, action, observation loop within a single agent, embeddable in others</td><td>Logic-driven agents capable of iterative reasoning</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="diagram-caption fade">The dominant multi-agent design pattern follows the mixture-of-agents model: layered agents that build on and refine each other's output.</p>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ── MCP ──────────────────────────────────── -->
+<section id="mcp">
+  <div class="container wide">
+    <p class="sec-eyebrow fade">Model Context Protocol</p>
+    <h2 class="sec-title fade">A standard way for models to reach the world</h2>
+    <div class="sec-body fade">
+      <p>Anthropic introduced the Model Context Protocol (MCP) in November 2024 to standardize how AI models interact with external tools, resources, and applications. Before MCP, integrations were custom and inconsistent, requiring teams to rewrite the same logic for every model, platform, or vendor. MCP is a foundational layer for modular, multi-agent, tool-augmented AI systems, often described as the USB-C of AI apps.</p>
+    </div>
+
+    <div class="card-grid cols-4 fade">
+      <div class="card"><h3>Interoperability</h3><p>Models, tools, and applications can all speak a shared language.</p></div>
+      <div class="card"><h3>Composability</h3><p>Tools, workflows, and agents are easy to plug in.</p></div>
+      <div class="card"><h3>Separation of Concerns</h3><p>Model behavior, tool logic, and application logic stay modular.</p></div>
+      <div class="card"><h3>Scalability</h3><p>One integration supports many AI models and use cases.</p></div>
+    </div>
+
+    <div class="diagram-card fade" style="margin-top: 24px;">
+      <svg viewBox="0 0 640 180" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrowMCP" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="#9a9a94" />
+          </marker>
+        </defs>
+        <rect x="20" y="50" width="200" height="80" rx="8" fill="#edf2ff" stroke="#1c5fdd" stroke-width="1.2"/>
+        <text x="120" y="75" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#1c5fdd">MCP Client</text>
+        <text x="120" y="94" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#60605a">invokes tools</text>
+        <text x="120" y="108" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#60605a">queries resources</text>
+        <text x="120" y="122" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#60605a">interpolates prompts</text>
+
+        <rect x="420" y="50" width="200" height="80" rx="8" fill="#fff" stroke="#c8c8c2" stroke-width="1.2"/>
+        <text x="520" y="75" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#19191a">MCP Server</text>
+        <text x="520" y="94" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#60605a">exposes tools</text>
+        <text x="520" y="108" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#60605a">exposes resources</text>
+        <text x="520" y="122" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#60605a">exposes prompts</text>
+
+        <line x1="220" y1="80" x2="416" y2="80" stroke="#9a9a94" stroke-width="1.3" marker-end="url(#arrowMCP)"/>
+        <line x1="416" y1="100" x2="220" y2="100" stroke="#9a9a94" stroke-width="1.3" marker-end="url(#arrowMCP)"/>
+        <text x="320" y="72" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a94">JSON-RPC 2.0</text>
+      </svg>
+    </div>
+    <p class="diagram-caption fade">Tools are model-controlled functions the model can invoke. Resources are application-controlled data, files, database records, API responses, exposed to the model. Prompts are user-controlled templates for common requests.</p>
+
+    <div class="reason-list fade">
+      <div class="reason-item">
+        <span class="reason-num">01</span>
+        <div class="reason-body">
+          <h4>For AI Application Developers</h4>
+          <ul>
+            <li>Plug-and-play integration: connect an app to any MCP server with no extra work</li>
+            <li>Universal compatibility: one interface across providers, no per-deployment refactor</li>
+          </ul>
+        </div>
+      </div>
+      <div class="reason-item">
+        <span class="reason-num">02</span>
+        <div class="reason-body">
+          <h4>For Tool or API Developers</h4>
+          <ul>
+            <li>Build once, use everywhere: one integration exposed to every MCP-compatible application</li>
+            <li>Standardized interfaces make a tool predictable to invoke across models and platforms</li>
+          </ul>
+        </div>
+      </div>
+      <div class="reason-item">
+        <span class="reason-num">03</span>
+        <div class="reason-body">
+          <h4>For End Users</h4>
+          <ul>
+            <li>Smarter, more capable apps that understand context, reference documents, and take real action</li>
+            <li>A more consistent experience across different AI products</li>
+          </ul>
+        </div>
+      </div>
+      <div class="reason-item">
+        <span class="reason-num">04</span>
+        <div class="reason-body">
+          <h4>For AI Product Teams</h4>
+          <ul>
+            <li>Defined roles between application logic, tool logic, and AI reasoning</li>
+            <li>Frontend, model, and backend teams can work in parallel on a shared standard</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection fade">
+      <h3 class="subsection-title">An ecosystem forming quickly</h3>
+      <p class="sec-body">Salesforce, SAP, Slack, GitHub, Google Drive, and dozens of other platforms now expose MCP servers, alongside thousands of community servers listed across marketplaces including MCP.so, Smithery.ai, Glama, Cursor Directory, Mastra.ai, and Portkey.ai. Clients include Claude.ai, the Claude Desktop app, Amazon Q, Windsurf, Cursor, and Microsoft Copilot Studio.</p>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ── A2A ──────────────────────────────────── -->
+<section id="a2a">
+  <div class="container wide">
+    <p class="sec-eyebrow fade">Agent2Agent Protocol</p>
+    <h2 class="sec-title fade">Agents talking to agents, not just tools</h2>
+    <div class="sec-body fade">
+      <p>Google introduced the Agent2Agent (A2A) Protocol in April 2025 as an open standard for communication between AI agents built on different frameworks and by different vendors. Where MCP connects a model to tools and data, A2A lets independent, opaque agents, each with their own roles, capabilities, and tools, coordinate toward a shared goal without a human in the loop at every step.</p>
+    </div>
+
+    <div class="two-col fade">
+      <div>
+        <h3 class="subsection-title">What A2A standardizes</h3>
+        <ul style="padding-left: 18px; font-size: 13.5px; color: var(--text-secondary); line-height: 1.7;">
+          <li>A common transport: JSON-RPC 2.0 over HTTP(S)</li>
+          <li>Discovery through Agent Cards, so agents can advertise capabilities and be found</li>
+          <li>Task management for long-running, multi-turn collaborative work</li>
+          <li>Support for text, files, structured data, and other rich media</li>
+          <li>Security and asynchronicity as first-class design concerns</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="subsection-title">Key design principles</h3>
+        <ul style="padding-left: 18px; font-size: 13.5px; color: var(--text-secondary); line-height: 1.7;">
+          <li><strong>Simplicity</strong> — reuse HTTP, JSON-RPC, and Server-Sent Events rather than new standards</li>
+          <li><strong>Enterprise readiness</strong> — authentication, authorization, privacy, tracing, monitoring</li>
+          <li><strong>Asynchronous first</strong> — long-running tasks and streaming, not just request and reply</li>
+          <li><strong>Modality agnostic</strong> — text, audio, video, and structured data alike</li>
+          <li><strong>Opaque execution</strong> — agents collaborate without exposing internal logic or tools</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subsection fade">
+      <h3 class="subsection-title">A future where agents represent you</h3>
+      <p class="sec-body">Today's most advanced demos still have a person talking directly to an enterprise's agent. A2A points toward a future where consumers have their own agent acting as the go-between, one that can compare several companies' agents and negotiate the best outcome on the person's behalf, exactly the kind of agent-to-agent negotiation A2A is built to carry.</p>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ── Comparison ───────────────────────────── -->
+<section id="comparison">
+  <div class="container wide">
+    <p class="sec-eyebrow fade">Netting It Out</p>
+    <h2 class="sec-title fade">MCP and A2A are complementary, not competing</h2>
+    <div class="sec-body fade">
+      <p>MCP standardizes how a model accesses tools, data, and dynamic context. A2A standardizes how independent agents communicate, discover each other, and collaborate. In simple terms, MCP is about model-to-resource interaction, and A2A is about agent-to-agent communication. Most agentic systems will need both.</p>
+    </div>
+
+    <div class="table-wrap short fade">
+      <table class="data-table">
+        <thead><tr><th></th><th>Model Context Protocol</th><th>Agent2Agent Protocol</th></tr></thead>
+        <tbody>
+          <tr><td>Introduced by</td><td>Anthropic, November 2024</td><td>Google, April 2025</td></tr>
+          <tr><td>Standardizes</td><td>Model-to-resource access</td><td>Agent-to-agent communication</td></tr>
+          <tr><td>Transport</td><td>HTTP, JSON-RPC, Server-Sent Events</td><td>HTTP, JSON-RPC, Server-Sent Events</td></tr>
+          <tr><td>Handles</td><td>Text, code, documents, structured inputs</td><td>Text, audio, video, structured data</td></tr>
+          <tr><td>Core unit</td><td>Tools, resources, and prompts</td><td>Tasks, Agent Cards, and capabilities</td></tr>
+          <tr><td>Known for</td><td>The USB-C of AI apps</td><td>Enterprise-grade agent collaboration</td></tr>
+          <tr><td>Adopted by</td><td>Over 5,000 servers in the Glama directory</td><td>Salesforce, SAP, Workday, and more</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="subsection fade">
+      <h3 class="subsection-title">Related work: NANDA</h3>
+      <p class="sec-body">MIT Media Lab's NANDA project, Networked Agents and Decentralized AI, led by Ramesh Raskar, explores agent-to-agent interoperability from a decentralized angle, complementing the more centralized standards from Anthropic and Google.</p>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ── Resources ────────────────────────────── -->
+<section id="resources">
+  <div class="container wide">
+    <p class="sec-eyebrow fade">Resources</p>
+    <h2 class="sec-title fade">Specifications, repos, and further reading</h2>
+
+    <p class="research-group-title">Technical Specifications</p>
+    <div class="research-list">
+      <div class="research-item"><span class="research-num">01</span><div class="research-name"><a href="https://modelcontextprotocol.io/specification/2025-06-18" target="_blank" rel="noopener">Model Context Protocol Technical Specification</a></div></div>
+      <div class="research-item"><span class="research-num">02</span><div class="research-name"><a href="https://a2a-protocol.org/latest/specification/" target="_blank" rel="noopener">Agent2Agent Protocol Specification</a></div></div>
+    </div>
+
+    <p class="research-group-title">GitHub Repositories</p>
+    <div class="research-list">
+      <div class="research-item"><span class="research-num">01</span><div class="research-name"><a href="https://github.com/a2aproject/A2A" target="_blank" rel="noopener">A2A GitHub Repository</a></div></div>
+      <div class="research-item"><span class="research-num">02</span><div class="research-name"><a href="https://github.com/a2aproject/A2A-samples" target="_blank" rel="noopener">A2A GitHub Samples Repository</a></div></div>
+      <div class="research-item"><span class="research-num">03</span><div class="research-name"><a href="https://github.com/modelcontextprotocol" target="_blank" rel="noopener">Anthropic MCP GitHub Repository</a></div></div>
+    </div>
+
+    <p class="research-group-title">Papers</p>
+    <div class="research-list">
+      <div class="research-item"><span class="research-num">01</span><div class="research-name"><a href="https://arxiv.org/abs/2406.04692" target="_blank" rel="noopener">Mixture-of-Agents Enhances Large Language Model Capabilities</a></div></div>
+      <div class="research-item"><span class="research-num">02</span><div class="research-name"><a href="https://arxiv.org/abs/2407.06204" target="_blank" rel="noopener">A Survey on Mixture of Experts in Large Language Models</a></div></div>
+      <div class="research-item"><span class="research-num">03</span><div class="research-name"><a href="https://arxiv.org/abs/2210.03629" target="_blank" rel="noopener">ReAct: Synergizing Reasoning and Acting in Language Models</a></div></div>
+    </div>
+
+    <p class="research-group-title">Articles &amp; Learning Resources</p>
+    <div class="research-list">
+      <div class="research-item"><span class="research-num">01</span><div class="research-name"><a href="https://openai.com/index/function-calling-and-other-api-updates/" target="_blank" rel="noopener">Function Calling and Other API Updates</a></div></div>
+      <div class="research-item"><span class="research-num">02</span><div class="research-name"><a href="https://www.anthropic.com/news/model-context-protocol" target="_blank" rel="noopener">Introducing the Model Context Protocol</a></div></div>
+      <div class="research-item"><span class="research-num">03</span><div class="research-name"><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">Building Effective Agents</a></div></div>
+      <div class="research-item"><span class="research-num">04</span><div class="research-name"><a href="https://langchain-ai.github.io/langgraph/concepts/multi_agent/" target="_blank" rel="noopener">LangGraph Multi-Agent Reference Architectures</a></div></div>
+      <div class="research-item"><span class="research-num">05</span><div class="research-name"><a href="https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/" target="_blank" rel="noopener">A2A: A New Era of Agent Interoperability</a></div></div>
+      <div class="research-item"><span class="research-num">06</span><div class="research-name"><a href="https://nanda.mit.edu/" target="_blank" rel="noopener">NANDA — Networked Agents and Decentralized AI</a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ────────────────────────────────── -->
+<footer>
+  <div class="footer-inner wide">
+    <a href="index.html" class="back-link" style="margin-bottom: 0;">← Back to portfolio</a>
+    <span class="footer-text">© 2026 Tim Sent</span>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }),
+    { threshold: 0.1, rootMargin: '0px 0px -24px 0px' }
+  );
+  document.querySelectorAll('.fade').forEach(el => io.observe(el));
+  const hero = document.querySelector('.hero.fade');
+  if (hero) requestAnimationFrame(() => hero.classList.add('in'));
+</script>
+</body>
+</html>
